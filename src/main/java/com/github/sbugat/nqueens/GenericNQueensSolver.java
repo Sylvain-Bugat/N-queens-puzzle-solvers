@@ -9,7 +9,7 @@ public abstract class GenericNQueensSolver {
 	protected long solutionCount;
 
 	/** Print solution flag. */
-	private final boolean printSolution;
+	protected final boolean printSolution;
 
 	protected GenericNQueensSolver(final int chessboardSizeArg, final boolean printSolutionArg) {
 		chessboardSize = chessboardSizeArg;
