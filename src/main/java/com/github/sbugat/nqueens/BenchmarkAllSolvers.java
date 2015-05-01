@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.github.sbugat.nqueens.solvers.greedy.GreedyNQueensSolver;
+import com.github.sbugat.nqueens.solvers.greedy.GreedyNQueensSolverCheckCounting;
 import com.github.sbugat.nqueens.solvers.greedy.GreedyNQueensSolverCheckRefactored;
+import com.github.sbugat.nqueens.solvers.greedy.GreedyNQueensSolverOneDimension;
 import com.github.sbugat.nqueens.solvers.greedy.GreedyNQueensSolverWithExplicitConstraits;
 import com.github.sbugat.nqueens.solvers.greedy.GreedyNQueensSolverWithExplicitInlineConstraits;
+import com.github.sbugat.nqueens.solvers.greedy.GreedyNQueensSolverWithLists;
 import com.github.sbugat.nqueens.tools.BenchmarkTools;
 import com.github.sbugat.nqueens.tools.InvalidSolutionsException;
 
@@ -16,6 +19,9 @@ public abstract class BenchmarkAllSolvers {
 
 		final List<GenericNQueensSolver> genericNQueensSolverList = new ArrayList<>();
 
+		genericNQueensSolverList.add(new GreedyNQueensSolverOneDimension(chessboardSize, false));
+		genericNQueensSolverList.add(new GreedyNQueensSolverWithLists(chessboardSize, false));
+		genericNQueensSolverList.add(new GreedyNQueensSolverCheckCounting(chessboardSize, false));
 		genericNQueensSolverList.add(new GreedyNQueensSolverWithExplicitInlineConstraits(chessboardSize, false));
 		genericNQueensSolverList.add(new GreedyNQueensSolverWithExplicitConstraits(chessboardSize, false));
 		genericNQueensSolverList.add(new GreedyNQueensSolver(chessboardSize, false));
