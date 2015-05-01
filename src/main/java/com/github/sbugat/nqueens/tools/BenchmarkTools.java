@@ -7,7 +7,7 @@ import java.util.List;
 
 import com.github.sbugat.nqueens.GenericNQueensSolver;
 
-public class BenchmarkTools {
+public abstract class BenchmarkTools {
 
 	public static long benchmark(final GenericNQueensSolver genericNQueensSolver, final int benchmarkNumber) throws InvalidSolutionsException {
 
@@ -38,5 +38,20 @@ public class BenchmarkTools {
 		}
 
 		return timeSum.divide(BigInteger.valueOf(includedRunCount)).longValue();
+	}
+
+	public static String nanoSecondsToString(final long nanoSeconds) {
+
+		if (nanoSeconds < 1_000) {
+			return nanoSeconds + "ns";
+		}
+		else if (nanoSeconds < 1_000_000) {
+			return String.format("%.2f µs", nanoSeconds / 1_000.0);
+		}
+		else if (nanoSeconds < 1_000_000_000) {
+			return String.format("%.2f ms", nanoSeconds / 1_000_000.0);
+		}
+
+		return String.format("%.2f s", nanoSeconds / 1_000_000_000.0);
 	}
 }
