@@ -225,6 +225,9 @@
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>versions-maven-plugin</artifactId>
 				<version>${maven.pluginversions.version}</version>
+				<configuration>
+					<rulesUri>file:./dependencies-check-rules.xml</rulesUri>
+				</configuration>
 			</plugin>
 		</plugins>
 		<pluginManagement>
