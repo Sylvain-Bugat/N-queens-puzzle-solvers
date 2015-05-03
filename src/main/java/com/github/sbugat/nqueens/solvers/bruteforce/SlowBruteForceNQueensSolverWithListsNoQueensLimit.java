@@ -1,4 +1,4 @@
-package com.github.sbugat.nqueens.solvers.greedy;
+package com.github.sbugat.nqueens.solvers.bruteforce;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,12 +15,12 @@ import com.github.sbugat.nqueens.tools.SequenceTools;
  * @author Sylvain Bugat
  * 
  */
-public final class SlowGreedyNQueensSolverWithListsNoQueensLimit extends GenericNQueensSolver {
+public final class SlowBruteForceNQueensSolverWithListsNoQueensLimit extends GenericNQueensSolver {
 
 	/** Chessboard used only to display a solution. */
 	private final List<List<Boolean>> chessboard;
 
-	public SlowGreedyNQueensSolverWithListsNoQueensLimit(final int chessboardSizeArg, final boolean printSolutionArg) {
+	public SlowBruteForceNQueensSolverWithListsNoQueensLimit(final int chessboardSizeArg, final boolean printSolutionArg) {
 
 		super(chessboardSizeArg, printSolutionArg);
 
@@ -197,7 +197,7 @@ public final class SlowGreedyNQueensSolverWithListsNoQueensLimit extends Generic
 		final int chessboardSize = 8;
 
 		// Instantiate adn run the greedy solver
-		final SlowGreedyNQueensSolverWithListsNoQueensLimit genericNQueensSolver = new SlowGreedyNQueensSolverWithListsNoQueensLimit(chessboardSize, true);
+		final SlowBruteForceNQueensSolverWithListsNoQueensLimit genericNQueensSolver = new SlowBruteForceNQueensSolverWithListsNoQueensLimit(chessboardSize, true);
 		final long solutionCount = genericNQueensSolver.solve();
 
 		// End of the algorithm print the total of solution(s) found

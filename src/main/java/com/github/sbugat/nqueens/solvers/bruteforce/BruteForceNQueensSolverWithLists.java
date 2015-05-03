@@ -1,4 +1,7 @@
-package com.github.sbugat.nqueens.solvers.greedy;
+package com.github.sbugat.nqueens.solvers.bruteforce;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import com.github.sbugat.nqueens.GenericNQueensSolver;
 import com.github.sbugat.nqueens.tools.InvalidSolutionsException;
@@ -10,31 +13,25 @@ import com.github.sbugat.nqueens.tools.SequenceTools;
  * @author Sylvain Bugat
  * 
  */
-public final class GreedyNQueensSolverWithExplicitConstraits extends GenericNQueensSolver {
+public final class BruteForceNQueensSolverWithLists extends GenericNQueensSolver {
 
 	/** Chessboard used only to display a solution. */
-	private final boolean[][] chessboard;
-	/** Array to count queens on each column. */
-	private final int[] columnCounts;
-	/** Array to count queens on each line. */
-	private final int[] lineCounts;
-	/** Array to count queens on ascending diagonals, diagonal number = x + y. */
-	private final int[] ascendingDiagonalCounts;
-	/** Array to count queens on descending diagonals, diagonal number = x + chess board size - 1 - y. */
-	private final int[] descendingDiagonalCounts;
-
+	private final List<List<Boolean>> chessboard;
 	/** Current number of placedQueens */
 	private int placedQueens;
 
-	public GreedyNQueensSolverWithExplicitConstraits(final int chessboardSizeArg, final boolean printSolutionArg) {
+	public BruteForceNQueensSolverWithLists(final int chessboardSizeArg, final boolean printSolutionArg) {
 
 		super(chessboardSizeArg, printSolutionArg);
 
-		chessboard = new boolean[chessboardSizeArg][chessboardSizeArg];
-		columnCounts = new int[chessboardSizeArg];
-		lineCounts = new int[chessboardSizeArg];
-		ascendingDiagonalCounts = new int[chessboardSizeArg * 2 - 1];
-		descendingDiagonalCounts = new int[chessboardSizeArg * 2 - 1];
+		chessboard = new ArrayList<>();
+		for (int y = 0; y < chessboardSizeArg; y++) {
+			final List<Boolean> lineList = new ArrayList<>();
+			for (int x = 0; x < chessboardSizeArg; x++) {
+				lineList.add(Boolean.FALSE);
+			}
+			chessboard.add(lineList);
+		}
 	}
 
 	@Override
@@ -55,13 +52,7 @@ public final class GreedyNQueensSolverWithExplicitConstraits extends GenericNQue
 	private void solve(final int x, final int y) {
 
 		// Place a queen on the current position
-		chessboard[y][x] = true;
-		lineCounts[y]++;
-		columnCounts[x]++;
-		final int ascendingDiagnonal = x + y;
-		final int descendingDiagnonal = x + chessboardSize - 1 - y;
-		ascendingDiagonalCounts[ascendingDiagnonal]++;
-		descendingDiagonalCounts[descendingDiagnonal]++;
+		chessboard.get(y).set(x, Boolean.TRUE);
 		placedQueens++;
 
 		// All queens are sets on the chessboard then a solution may be present
@@ -84,14 +75,8 @@ public final class GreedyNQueensSolverWithExplicitConstraits extends GenericNQue
 				solve(nextX, y);
 			}
 		}
-
-		// Remove the placed queen
 		placedQueens--;
-		ascendingDiagonalCounts[ascendingDiagnonal]--;
-		descendingDiagonalCounts[descendingDiagnonal]--;
-		lineCounts[y]--;
-		columnCounts[x]--;
-		chessboard[y][x] = false;
+		chessboard.get(y).set(x, Boolean.FALSE);
 
 		final int nextX = (x + 1) % chessboardSize;
 		if (0 == nextX) {
@@ -112,19 +97,83 @@ public final class GreedyNQueensSolverWithExplicitConstraits extends GenericNQue
 	 */
 	private boolean checkSolutionChessboard() {
 
-		// Check if 2 queens are on the same line and column
-		for (int i = 0; i < columnCounts.length; i++) {
+		// Check if 2 queens are on the same line
+		for (int y = 0; y < chessboardSize; y++) {
 
-			if (columnCounts[i] > 1 || lineCounts[i] > 1) {
-				return false;
+			boolean usedLine = false;
+			for (int x = 0; x < chessboardSize; x++) {
+
+				if (chessboard.get(y).get(x).booleanValue()) {
+					if (usedLine) {
+						return false;
+					}
+					else {
+						usedLine = true;
+					}
+				}
 			}
 		}
 
 		// Check if 2 queens are on the same column
-		for (int i = 0; i < ascendingDiagonalCounts.length; i++) {
+		for (int x = 0; x < chessboardSize; x++) {
 
-			if (ascendingDiagonalCounts[i] > 1 || descendingDiagonalCounts[i] > 1) {
-				return false;
+			boolean usedColumn = false;
+			for (int y = 0; y < chessboardSize; y++) {
+
+				if (chessboard.get(y).get(x).booleanValue()) {
+					if (usedColumn) {
+						return false;
+					}
+					else {
+						usedColumn = true;
+					}
+				}
+			}
+		}
+
+		// Check if 2 queens are on the same descending diagonal
+		for (int diagonal = 0; diagonal < chessboardSize * 2 - 1; diagonal++) {
+
+			boolean usedDiagonal = false;
+
+			for (int y = 0; y < chessboardSize; y++) {
+
+				final int x = diagonal - y;
+
+				if (x >= 0 && x < chessboardSize) {
+
+					if (chessboard.get(y).get(x).booleanValue()) {
+						if (usedDiagonal) {
+							return false;
+						}
+						else {
+							usedDiagonal = true;
+						}
+					}
+				}
+			}
+		}
+
+		// Check if 2 queens are on the same ascending diagonal
+		for (int diagonal = 0; diagonal < chessboardSize * 2 - 1; diagonal++) {
+
+			boolean usedDiagonal = false;
+
+			for (int y = 0; y < chessboardSize; y++) {
+
+				final int x = diagonal - chessboardSize + 1 + y;
+
+				if (x >= 0 && x < chessboardSize) {
+
+					if (chessboard.get(y).get(x).booleanValue()) {
+						if (usedDiagonal) {
+							return false;
+						}
+						else {
+							usedDiagonal = true;
+						}
+					}
+				}
 			}
 		}
 
@@ -140,10 +189,10 @@ public final class GreedyNQueensSolverWithExplicitConstraits extends GenericNQue
 	public static void main(final String args[]) throws InvalidSolutionsException {
 
 		// Chessboard size (8 is quite long for this algorithm)
-		final int chessboardSize = 7;
+		final int chessboardSize = 8;
 
 		// Instantiate adn run the greedy solver
-		final GreedyNQueensSolverWithExplicitConstraits genericNQueensSolver = new GreedyNQueensSolverWithExplicitConstraits(chessboardSize, true);
+		final BruteForceNQueensSolverWithLists genericNQueensSolver = new BruteForceNQueensSolverWithLists(chessboardSize, true);
 		final long solutionCount = genericNQueensSolver.solve();
 
 		// End of the algorithm print the total of solution(s) found
@@ -154,6 +203,6 @@ public final class GreedyNQueensSolverWithExplicitConstraits extends GenericNQue
 
 	@Override
 	public boolean getChessboardPosition(final int x, final int y) {
-		return chessboard[y][x];
+		return chessboard.get(y).get(x).booleanValue();
 	}
 }

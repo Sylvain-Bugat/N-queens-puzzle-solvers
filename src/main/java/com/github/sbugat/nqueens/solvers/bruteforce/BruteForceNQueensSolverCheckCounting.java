@@ -1,4 +1,4 @@
-package com.github.sbugat.nqueens.solvers.greedy;
+package com.github.sbugat.nqueens.solvers.bruteforce;
 
 import com.github.sbugat.nqueens.GenericNQueensSolver;
 import com.github.sbugat.nqueens.tools.InvalidSolutionsException;
@@ -10,25 +10,25 @@ import com.github.sbugat.nqueens.tools.SequenceTools;
  * @author Sylvain Bugat
  * 
  */
-public final class GreedyNQueensSolverOneDimension extends GenericNQueensSolver {
+public final class BruteForceNQueensSolverCheckCounting extends GenericNQueensSolver {
 
-	/** Chessboard only one one dimension with all lines. */
-	private final boolean[] chessboard;
+	/** Chessboard used only to display a solution. */
+	private final boolean[][] chessboard;
 	/** Current number of placedQueens */
 	private int placedQueens;
 
-	public GreedyNQueensSolverOneDimension(final int chessboardSizeArg, final boolean printSolutionArg) {
+	public BruteForceNQueensSolverCheckCounting(final int chessboardSizeArg, final boolean printSolutionArg) {
 
 		super(chessboardSizeArg, printSolutionArg);
 
-		chessboard = new boolean[chessboardSizeArg * chessboardSizeArg];
+		chessboard = new boolean[chessboardSizeArg][chessboardSizeArg];
 	}
 
 	@Override
 	public long solve() {
 
 		// Start the algorithm at the first position
-		solve(0);
+		solve(0, 0);
 
 		// Return the number of solutions found
 		return solutionCount;
@@ -37,12 +37,12 @@ public final class GreedyNQueensSolverOneDimension extends GenericNQueensSolver 
 	/**
 	 * Solving recursive method, do a greedy algorithm by testing all combinations.
 	 * 
-	 * @param i index of the unique dimension
+	 * @param y number of the line stating at 0
 	 */
-	private void solve(final int i) {
+	private void solve(final int x, final int y) {
 
 		// Place a queen on the current position
-		chessboard[i] = true;
+		chessboard[y][x] = true;
 		placedQueens++;
 
 		// All queens are sets on the chessboard then a solution may be present
@@ -54,15 +54,29 @@ public final class GreedyNQueensSolverOneDimension extends GenericNQueensSolver 
 		}
 		else {
 
-			if (i + 1 < chessboard.length) {
-				solve(i + 1);
+			final int nextX = (x + 1) % chessboardSize;
+			if (0 == nextX) {
+
+				if (y + 1 < chessboardSize) {
+					solve(nextX, y + 1);
+				}
+			}
+			else {
+				solve(nextX, y);
 			}
 		}
 		placedQueens--;
-		chessboard[i] = false;
+		chessboard[y][x] = false;
 
-		if (i + 1 < chessboard.length) {
-			solve(i + 1);
+		final int nextX = (x + 1) % chessboardSize;
+		if (0 == nextX) {
+
+			if (y + 1 < chessboardSize) {
+				solve(nextX, y + 1);
+			}
+		}
+		else {
+			solve(nextX, y);
 		}
 	}
 
@@ -74,82 +88,72 @@ public final class GreedyNQueensSolverOneDimension extends GenericNQueensSolver 
 	private boolean checkSolutionChessboard() {
 
 		// Check if 2 queens are on the same line
-		for (int y = 0; y < chessboard.length; y += chessboardSize) {
+		for (int y = 0; y < chessboardSize; y++) {
 
-			boolean usedLine = false;
-			for (int x = y; x < y + chessboardSize; x++) {
+			int count = 0;
+			for (int x = 0; x < chessboardSize; x++) {
 
-				if (chessboard[x]) {
-					if (usedLine) {
-						return false;
-					}
-					else {
-						usedLine = true;
-					}
+				if (chessboard[y][x]) {
+					count++;
 				}
+			}
+			if (count != 1) {
+				return false;
 			}
 		}
 
 		// Check if 2 queens are on the same column
 		for (int x = 0; x < chessboardSize; x++) {
 
-			boolean usedColumn = false;
-			for (int i = x; i < chessboard.length; i += chessboardSize) {
+			int count = 0;
+			for (int y = 0; y < chessboardSize; y++) {
 
-				if (chessboard[i]) {
-					if (usedColumn) {
-						return false;
-					}
-					else {
-						usedColumn = true;
-					}
+				if (chessboard[y][x]) {
+					count++;
 				}
+			}
+			if (count != 1) {
+				return false;
 			}
 		}
 
 		// Check if 2 queens are on the same descending diagonal
 		for (int diagonal = 0; diagonal < chessboardSize * 2 - 1; diagonal++) {
 
-			boolean usedDiagonal = false;
-
+			int count = 0;
 			for (int y = 0; y < chessboardSize; y++) {
 
 				final int x = diagonal - y;
 
 				if (x >= 0 && x < chessboardSize) {
 
-					if (chessboard[y * chessboardSize + x]) {
-						if (usedDiagonal) {
-							return false;
-						}
-						else {
-							usedDiagonal = true;
-						}
+					if (chessboard[y][x]) {
+						count++;
 					}
 				}
+			}
+			if (count > 1) {
+				return false;
 			}
 		}
 
 		// Check if 2 queens are on the same ascending diagonal
 		for (int diagonal = 0; diagonal < chessboardSize * 2 - 1; diagonal++) {
 
-			boolean usedDiagonal = false;
-
+			int count = 0;
 			for (int y = 0; y < chessboardSize; y++) {
 
 				final int x = diagonal - chessboardSize + 1 + y;
 
 				if (x >= 0 && x < chessboardSize) {
 
-					if (chessboard[y * chessboardSize + x]) {
-						if (usedDiagonal) {
-							return false;
-						}
-						else {
-							usedDiagonal = true;
-						}
+					if (chessboard[y][x]) {
+						count++;
 					}
 				}
+			}
+			if (count > 1) {
+				return false;
 			}
 		}
 
@@ -168,7 +172,7 @@ public final class GreedyNQueensSolverOneDimension extends GenericNQueensSolver 
 		final int chessboardSize = 8;
 
 		// Instantiate adn run the greedy solver
-		final GreedyNQueensSolverOneDimension genericNQueensSolver = new GreedyNQueensSolverOneDimension(chessboardSize, true);
+		final BruteForceNQueensSolverCheckCounting genericNQueensSolver = new BruteForceNQueensSolverCheckCounting(chessboardSize, true);
 		final long solutionCount = genericNQueensSolver.solve();
 
 		// End of the algorithm print the total of solution(s) found
@@ -179,6 +183,6 @@ public final class GreedyNQueensSolverOneDimension extends GenericNQueensSolver 
 
 	@Override
 	public boolean getChessboardPosition(final int x, final int y) {
-		return chessboard[y * chessboardSize + x];
+		return chessboard[y][x];
 	}
 }

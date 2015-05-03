@@ -3,15 +3,14 @@ package com.github.sbugat.nqueens;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.github.sbugat.nqueens.solvers.greedy.GreedyNQueensSolver;
-import com.github.sbugat.nqueens.solvers.greedy.GreedyNQueensSolverCheckCounting;
-import com.github.sbugat.nqueens.solvers.greedy.GreedyNQueensSolverCheckRefactored;
-import com.github.sbugat.nqueens.solvers.greedy.GreedyNQueensSolverFullyOptimized;
-import com.github.sbugat.nqueens.solvers.greedy.GreedyNQueensSolverOneDimension;
-import com.github.sbugat.nqueens.solvers.greedy.GreedyNQueensSolverWithExplicitConstraits;
-import com.github.sbugat.nqueens.solvers.greedy.GreedyNQueensSolverWithExplicitInlineConstraits;
-import com.github.sbugat.nqueens.solvers.greedy.GreedyNQueensSolverWithLists;
-import com.github.sbugat.nqueens.solvers.greedy.SlowGreedyNQueensSolverWithLists;
+import com.github.sbugat.nqueens.solvers.bruteforce.BruteForceNQueensSolver;
+import com.github.sbugat.nqueens.solvers.bruteforce.BruteForceNQueensSolverCheckCounting;
+import com.github.sbugat.nqueens.solvers.bruteforce.BruteForceNQueensSolverCheckRefactored;
+import com.github.sbugat.nqueens.solvers.bruteforce.BruteForceNQueensSolverFullyOptimized;
+import com.github.sbugat.nqueens.solvers.bruteforce.BruteForceNQueensSolverOneDimension;
+import com.github.sbugat.nqueens.solvers.bruteforce.BruteForceNQueensSolverWithExplicitConstraits;
+import com.github.sbugat.nqueens.solvers.bruteforce.BruteForceNQueensSolverWithExplicitInlineConstraits;
+import com.github.sbugat.nqueens.solvers.bruteforce.BruteForceNQueensSolverWithLists;
 import com.github.sbugat.nqueens.tools.BenchmarkTools;
 import com.github.sbugat.nqueens.tools.InvalidSolutionsException;
 
@@ -21,16 +20,16 @@ public abstract class BenchmarkAllSolvers {
 
 		final List<GenericNQueensSolver> genericNQueensSolverList = new ArrayList<>();
 
-		// genericNQueensSolverList.add(new SlowGreedyNQueensSolverWithListsNoQueensLimit(chessboardSize, true));
-		genericNQueensSolverList.add(new SlowGreedyNQueensSolverWithLists(chessboardSize, false));
-		genericNQueensSolverList.add(new GreedyNQueensSolverFullyOptimized(chessboardSize));
-		genericNQueensSolverList.add(new GreedyNQueensSolverOneDimension(chessboardSize, false));
-		genericNQueensSolverList.add(new GreedyNQueensSolverWithLists(chessboardSize, false));
-		genericNQueensSolverList.add(new GreedyNQueensSolverCheckCounting(chessboardSize, false));
-		genericNQueensSolverList.add(new GreedyNQueensSolverWithExplicitInlineConstraits(chessboardSize, false));
-		genericNQueensSolverList.add(new GreedyNQueensSolverWithExplicitConstraits(chessboardSize, false));
-		genericNQueensSolverList.add(new GreedyNQueensSolver(chessboardSize, false));
-		genericNQueensSolverList.add(new GreedyNQueensSolverCheckRefactored(chessboardSize, false));
+		// genericNQueensSolverList.add(new SlowBruteForceNQueensSolverWithListsNoQueensLimit(chessboardSize, true));
+		// genericNQueensSolverList.add(new SlowBruteForceNQueensSolverWithLists(chessboardSize, false));
+		genericNQueensSolverList.add(new BruteForceNQueensSolverFullyOptimized(chessboardSize));
+		genericNQueensSolverList.add(new BruteForceNQueensSolverOneDimension(chessboardSize, false));
+		genericNQueensSolverList.add(new BruteForceNQueensSolverWithLists(chessboardSize, false));
+		genericNQueensSolverList.add(new BruteForceNQueensSolverCheckCounting(chessboardSize, false));
+		genericNQueensSolverList.add(new BruteForceNQueensSolverWithExplicitInlineConstraits(chessboardSize, false));
+		genericNQueensSolverList.add(new BruteForceNQueensSolverWithExplicitConstraits(chessboardSize, false));
+		genericNQueensSolverList.add(new BruteForceNQueensSolver(chessboardSize, false));
+		genericNQueensSolverList.add(new BruteForceNQueensSolverCheckRefactored(chessboardSize, false));
 
 		return genericNQueensSolverList;
 	}

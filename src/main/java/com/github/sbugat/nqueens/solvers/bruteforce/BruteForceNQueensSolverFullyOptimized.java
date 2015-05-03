@@ -1,4 +1,4 @@
-package com.github.sbugat.nqueens.solvers.greedy;
+package com.github.sbugat.nqueens.solvers.bruteforce;
 
 import com.github.sbugat.nqueens.GenericNQueensSolver;
 import com.github.sbugat.nqueens.tools.InvalidSolutionsException;
@@ -10,7 +10,7 @@ import com.github.sbugat.nqueens.tools.SequenceTools;
  * @author Sylvain Bugat
  * 
  */
-public final class GreedyNQueensSolverFullyOptimized extends GenericNQueensSolver {
+public final class BruteForceNQueensSolverFullyOptimized extends GenericNQueensSolver {
 
 	/** Array to count queens on each column. */
 	private final int[] columnCounts;
@@ -26,7 +26,7 @@ public final class GreedyNQueensSolverFullyOptimized extends GenericNQueensSolve
 	/** Current number of placedQueens */
 	private int placedQueens;
 
-	public GreedyNQueensSolverFullyOptimized(final int chessboardSizeArg) {
+	public BruteForceNQueensSolverFullyOptimized(final int chessboardSizeArg) {
 
 		super(chessboardSizeArg, false);
 
@@ -162,7 +162,7 @@ public final class GreedyNQueensSolverFullyOptimized extends GenericNQueensSolve
 		final int chessboardSize = 8;
 
 		// Instantiate adn run the greedy solver
-		final GreedyNQueensSolverFullyOptimized genericNQueensSolver = new GreedyNQueensSolverFullyOptimized(chessboardSize);
+		final BruteForceNQueensSolverFullyOptimized genericNQueensSolver = new BruteForceNQueensSolverFullyOptimized(chessboardSize);
 		final long solutionCount = genericNQueensSolver.solve();
 
 		// End of the algorithm print the total of solution(s) found

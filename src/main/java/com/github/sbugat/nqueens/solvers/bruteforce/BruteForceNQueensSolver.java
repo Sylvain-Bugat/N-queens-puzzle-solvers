@@ -1,4 +1,4 @@
-package com.github.sbugat.nqueens.solvers.greedy;
+package com.github.sbugat.nqueens.solvers.bruteforce;
 
 import com.github.sbugat.nqueens.GenericNQueensSolver;
 import com.github.sbugat.nqueens.tools.InvalidSolutionsException;
@@ -10,31 +10,18 @@ import com.github.sbugat.nqueens.tools.SequenceTools;
  * @author Sylvain Bugat
  * 
  */
-public final class GreedyNQueensSolverWithExplicitInlineConstraits extends GenericNQueensSolver {
+public final class BruteForceNQueensSolver extends GenericNQueensSolver {
 
 	/** Chessboard used only to display a solution. */
 	private final boolean[][] chessboard;
-	/** Array to count queens on each column. */
-	private final int[] columnCounts;
-	/** Array to count queens on each line. */
-	private final int[] lineCounts;
-	/** Array to count queens on ascending diagonals, diagonal number = x + y. */
-	private final int[] ascendingDiagonalCounts;
-	/** Array to count queens on descending diagonals, diagonal number = x + chess board size - 1 - y. */
-	private final int[] descendingDiagonalCounts;
-
 	/** Current number of placedQueens */
 	private int placedQueens;
 
-	public GreedyNQueensSolverWithExplicitInlineConstraits(final int chessboardSizeArg, final boolean printSolutionArg) {
+	public BruteForceNQueensSolver(final int chessboardSizeArg, final boolean printSolutionArg) {
 
 		super(chessboardSizeArg, printSolutionArg);
 
 		chessboard = new boolean[chessboardSizeArg][chessboardSizeArg];
-		columnCounts = new int[chessboardSizeArg];
-		lineCounts = new int[chessboardSizeArg];
-		ascendingDiagonalCounts = new int[chessboardSizeArg * 2 - 1];
-		descendingDiagonalCounts = new int[chessboardSizeArg * 2 - 1];
 	}
 
 	@Override
@@ -56,41 +43,13 @@ public final class GreedyNQueensSolverWithExplicitInlineConstraits extends Gener
 
 		// Place a queen on the current position
 		chessboard[y][x] = true;
-		lineCounts[y]++;
-		columnCounts[x]++;
-		final int ascendingDiagnonal = x + y;
-		final int descendingDiagnonal = x + chessboardSize - 1 - y;
-		ascendingDiagonalCounts[ascendingDiagnonal]++;
-		descendingDiagonalCounts[descendingDiagnonal]++;
 		placedQueens++;
 
 		// All queens are sets on the chessboard then a solution may be present
 		if (placedQueens >= chessboardSize) {
-
-			boolean solution = true;
-			// Check if 2 queens are on the same line and column
-			for (int i = 0; i < columnCounts.length; i++) {
-
-				if (columnCounts[i] > 1 || lineCounts[i] > 1) {
-					solution = false;
-					break;
-				}
-			}
-
-			if (solution) {
-				// Check if 2 queens are on the same column
-				for (int i = 0; i < ascendingDiagonalCounts.length; i++) {
-
-					if (ascendingDiagonalCounts[i] > 1 || descendingDiagonalCounts[i] > 1) {
-						solution = false;
-						break;
-					}
-				}
-
-				if (solution) {
-					solutionCount++;
-					print();
-				}
+			if (checkSolutionChessboard()) {
+				solutionCount++;
+				print();
 			}
 		}
 		else {
@@ -106,13 +65,7 @@ public final class GreedyNQueensSolverWithExplicitInlineConstraits extends Gener
 				solve(nextX, y);
 			}
 		}
-
-		// Remove the placed queen
 		placedQueens--;
-		ascendingDiagonalCounts[ascendingDiagnonal]--;
-		descendingDiagonalCounts[descendingDiagnonal]--;
-		lineCounts[y]--;
-		columnCounts[x]--;
 		chessboard[y][x] = false;
 
 		final int nextX = (x + 1) % chessboardSize;
@@ -128,6 +81,96 @@ public final class GreedyNQueensSolverWithExplicitInlineConstraits extends Gener
 	}
 
 	/**
+	 * Check if a chessboard with N queens is a solution (only one queens per lines, columns and diagnonals).
+	 * 
+	 * @return true if the chessboard contain a solution, false otherwise
+	 */
+	private boolean checkSolutionChessboard() {
+
+		// Check if 2 queens are on the same line
+		for (int y = 0; y < chessboardSize; y++) {
+
+			boolean usedLine = false;
+			for (int x = 0; x < chessboardSize; x++) {
+
+				if (chessboard[y][x]) {
+					if (usedLine) {
+						return false;
+					}
+					else {
+						usedLine = true;
+					}
+				}
+			}
+		}
+
+		// Check if 2 queens are on the same column
+		for (int x = 0; x < chessboardSize; x++) {
+
+			boolean usedColumn = false;
+			for (int y = 0; y < chessboardSize; y++) {
+
+				if (chessboard[y][x]) {
+					if (usedColumn) {
+						return false;
+					}
+					else {
+						usedColumn = true;
+					}
+				}
+			}
+		}
+
+		// Check if 2 queens are on the same descending diagonal
+		for (int diagonal = 0; diagonal < chessboardSize * 2 - 1; diagonal++) {
+
+			boolean usedDiagonal = false;
+
+			for (int y = 0; y < chessboardSize; y++) {
+
+				final int x = diagonal - y;
+
+				if (x >= 0 && x < chessboardSize) {
+
+					if (chessboard[y][x]) {
+						if (usedDiagonal) {
+							return false;
+						}
+						else {
+							usedDiagonal = true;
+						}
+					}
+				}
+			}
+		}
+
+		// Check if 2 queens are on the same ascending diagonal
+		for (int diagonal = 0; diagonal < chessboardSize * 2 - 1; diagonal++) {
+
+			boolean usedDiagonal = false;
+
+			for (int y = 0; y < chessboardSize; y++) {
+
+				final int x = diagonal - chessboardSize + 1 + y;
+
+				if (x >= 0 && x < chessboardSize) {
+
+					if (chessboard[y][x]) {
+						if (usedDiagonal) {
+							return false;
+						}
+						else {
+							usedDiagonal = true;
+						}
+					}
+				}
+			}
+		}
+
+		return true;
+	}
+
+	/**
 	 * Main greedy program.
 	 * 
 	 * @param args options
@@ -136,10 +179,10 @@ public final class GreedyNQueensSolverWithExplicitInlineConstraits extends Gener
 	public static void main(final String args[]) throws InvalidSolutionsException {
 
 		// Chessboard size (8 is quite long for this algorithm)
-		final int chessboardSize = 7;
+		final int chessboardSize = 8;
 
 		// Instantiate adn run the greedy solver
-		final GreedyNQueensSolverWithExplicitInlineConstraits genericNQueensSolver = new GreedyNQueensSolverWithExplicitInlineConstraits(chessboardSize, true);
+		final BruteForceNQueensSolver genericNQueensSolver = new BruteForceNQueensSolver(chessboardSize, true);
 		final long solutionCount = genericNQueensSolver.solve();
 
 		// End of the algorithm print the total of solution(s) found
