@@ -19,7 +19,7 @@ public abstract class GenericNQueensSolver {
 	/**
 	 * Print the current chessboard.
 	 */
-	public void print() {
+	public final void print() {
 
 		if (printSolution) {
 			System.out.println("\nsolution number " + solutionCount); //$NON-NLS-1$
@@ -40,13 +40,13 @@ public abstract class GenericNQueensSolver {
 		}
 	}
 
-	public int getPuzzleSize() {
+	public final int getPuzzleSize() {
 		return chessboardSize;
 	}
 
 	public abstract long solve();
 
-	public void reset() {
+	public final void reset() {
 
 		// Reinitialize the number of solutions found
 		solutionCount = 0;
