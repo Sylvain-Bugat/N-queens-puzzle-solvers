@@ -15,7 +15,7 @@ import com.github.sbugat.nqueens.tools.SequenceTools;
  */
 public final class SlowBruteForceNQueensSolverWithLists extends GenericNQueensSolver {
 
-	/** Chessboard used only to display a solution. */
+	/** Chessboard represented by a list of lists. */
 	private final List<List<Boolean>> chessboard;
 
 	public SlowBruteForceNQueensSolverWithLists(final int chessboardSizeArg, final boolean printSolutionArg) {
@@ -49,7 +49,7 @@ public final class SlowBruteForceNQueensSolverWithLists extends GenericNQueensSo
 	 */
 	private void solve(final int x, final int y) {
 
-		// Place a queen on the current position
+		// Put a queen on the current position
 		chessboard.get(x).set(y, Boolean.TRUE);
 
 		// All queens are sets on the chessboard then a solution may be present
@@ -61,9 +61,12 @@ public final class SlowBruteForceNQueensSolverWithLists extends GenericNQueensSo
 		}
 		else {
 
+			// Recursive call to the next position
 			final int nextX = (x + 1) % chessboardSize;
+			// Switch to the next line
 			if (0 == nextX) {
 
+				// End of the chessboard check
 				if (y + 1 < chessboardSize) {
 					solve(nextX, y + 1);
 				}
@@ -73,11 +76,15 @@ public final class SlowBruteForceNQueensSolverWithLists extends GenericNQueensSo
 			}
 		}
 
+		// Remove the queen on the current position
 		chessboard.get(x).set(y, Boolean.FALSE);
 
+		// Recursive call to the next position
 		final int nextX = (x + 1) % chessboardSize;
+		// Switch to the next line
 		if (0 == nextX) {
 
+			// End of the chessboard check
 			if (y + 1 < chessboardSize) {
 				solve(nextX, y + 1);
 			}
