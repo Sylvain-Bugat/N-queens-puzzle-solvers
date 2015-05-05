@@ -17,7 +17,7 @@ import com.github.sbugat.nqueens.tools.SequenceTools;
  */
 public final class SlowBruteForceNQueensSolverWithListsNoQueensLimit extends GenericNQueensSolver {
 
-	/** Chessboard used only to display a solution. */
+	/** Chessboard represented by a list of lists. */
 	private final List<List<Boolean>> chessboard;
 
 	public SlowBruteForceNQueensSolverWithListsNoQueensLimit(final int chessboardSizeArg, final boolean printSolutionArg) {
@@ -52,19 +52,22 @@ public final class SlowBruteForceNQueensSolverWithListsNoQueensLimit extends Gen
 	 */
 	private void solve(final int x, final int y) {
 
-		// Place a queen on the current position
+		// Put a queen on the current position
 		chessboard.get(x).set(y, Boolean.TRUE);
 
-		// Test if the current chessboard is a solution with exaclty N queens
+		// Test if the chessboard is a solution with exactly N queens
 		if (checkSolutionChessboard()) {
 			solutionCount++;
 			print();
 		}
 		else {
 
+			// Recursive call to the next position
 			final int nextX = (x + 1) % chessboardSize;
+			// Switch to the next line
 			if (0 == nextX) {
 
+				// End of the chessboard check
 				if (y + 1 < chessboardSize) {
 					solve(nextX, y + 1);
 				}
@@ -74,11 +77,15 @@ public final class SlowBruteForceNQueensSolverWithListsNoQueensLimit extends Gen
 			}
 		}
 
+		// Remove the queen on the current position
 		chessboard.get(x).set(y, Boolean.FALSE);
 
+		// Recursive call to the next position
 		final int nextX = (x + 1) % chessboardSize;
+		// Switch to the next line
 		if (0 == nextX) {
 
+			// End of the chessboard check
 			if (y + 1 < chessboardSize) {
 				solve(nextX, y + 1);
 			}
@@ -194,7 +201,7 @@ public final class SlowBruteForceNQueensSolverWithListsNoQueensLimit extends Gen
 	public static void main(final String args[]) throws InvalidSolutionsException {
 
 		// Chessboard size (8 is quite long for this algorithm)
-		final int chessboardSize = 8;
+		final int chessboardSize = 2;
 
 		// Instantiate adn run the greedy solver
 		final SlowBruteForceNQueensSolverWithListsNoQueensLimit genericNQueensSolver = new SlowBruteForceNQueensSolverWithListsNoQueensLimit(chessboardSize, true);
