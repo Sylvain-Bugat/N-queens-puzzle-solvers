@@ -3,7 +3,7 @@ package com.github.sbugat.nqueens;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.github.sbugat.nqueens.solvers.bruteforce.BruteForceNQueensSolver;
+import com.github.sbugat.nqueens.solvers.bruteforce.BruteForceNQueensSolverCountQueens;
 import com.github.sbugat.nqueens.solvers.bruteforce.BruteForceNQueensSolverCheckCounting;
 import com.github.sbugat.nqueens.solvers.bruteforce.BruteForceNQueensSolverCheckRefactored;
 import com.github.sbugat.nqueens.solvers.bruteforce.BruteForceNQueensSolverFullyOptimized;
@@ -28,7 +28,7 @@ public abstract class BenchmarkAllSolvers {
 		genericNQueensSolverList.add(new BruteForceNQueensSolverCheckCounting(chessboardSize, false));
 		genericNQueensSolverList.add(new BruteForceNQueensSolverWithExplicitInlineConstraits(chessboardSize, false));
 		genericNQueensSolverList.add(new BruteForceNQueensSolverWithExplicitConstraits(chessboardSize, false));
-		genericNQueensSolverList.add(new BruteForceNQueensSolver(chessboardSize, false));
+		genericNQueensSolverList.add(new BruteForceNQueensSolverCountQueens(chessboardSize, false));
 		genericNQueensSolverList.add(new BruteForceNQueensSolverCheckRefactored(chessboardSize, false));
 
 		return genericNQueensSolverList;

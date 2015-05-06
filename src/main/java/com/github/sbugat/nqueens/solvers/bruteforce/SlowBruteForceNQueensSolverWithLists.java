@@ -45,7 +45,8 @@ public final class SlowBruteForceNQueensSolverWithLists extends GenericNQueensSo
 	/**
 	 * Solving recursive method, do a greedy algorithm by testing all combinations.
 	 * 
-	 * @param y number of the line stating at 0
+	 * @param x X position on the chessboard
+	 * @param y Y position on the chessboard
 	 */
 	private void solve(final int x, final int y) {
 
@@ -58,8 +59,7 @@ public final class SlowBruteForceNQueensSolverWithLists extends GenericNQueensSo
 				solutionCount++;
 				print();
 			}
-		}
-		else {
+		} else {
 
 			// Recursive call to the next position
 			final int nextX = (x + 1) % chessboardSize;
@@ -70,8 +70,7 @@ public final class SlowBruteForceNQueensSolverWithLists extends GenericNQueensSo
 				if (y + 1 < chessboardSize) {
 					solve(nextX, y + 1);
 				}
-			}
-			else {
+			} else {
 				solve(nextX, y);
 			}
 		}
@@ -88,8 +87,7 @@ public final class SlowBruteForceNQueensSolverWithLists extends GenericNQueensSo
 			if (y + 1 < chessboardSize) {
 				solve(nextX, y + 1);
 			}
-		}
-		else {
+		} else {
 			solve(nextX, y);
 		}
 	}
@@ -133,9 +131,7 @@ public final class SlowBruteForceNQueensSolverWithLists extends GenericNQueensSo
 					if (usedLine) {
 						return false;
 					}
-					else {
-						usedLine = true;
-					}
+					usedLine = true;
 				}
 			}
 		}
@@ -150,9 +146,7 @@ public final class SlowBruteForceNQueensSolverWithLists extends GenericNQueensSo
 					if (usedColumn) {
 						return false;
 					}
-					else {
-						usedColumn = true;
-					}
+					usedColumn = true;
 				}
 			}
 		}
@@ -167,9 +161,7 @@ public final class SlowBruteForceNQueensSolverWithLists extends GenericNQueensSo
 						if (usedDiagonal) {
 							return false;
 						}
-						else {
-							usedDiagonal = true;
-						}
+						usedDiagonal = true;
 					}
 				}
 			}
@@ -185,9 +177,7 @@ public final class SlowBruteForceNQueensSolverWithLists extends GenericNQueensSo
 						if (usedDiagonal) {
 							return false;
 						}
-						else {
-							usedDiagonal = true;
-						}
+						usedDiagonal = true;
 					}
 				}
 			}
@@ -204,8 +194,8 @@ public final class SlowBruteForceNQueensSolverWithLists extends GenericNQueensSo
 	 */
 	public static void main(final String args[]) throws InvalidSolutionsException {
 
-		// Chessboard size (8 is quite long for this algorithm)
-		final int chessboardSize = 8;
+		// Chessboard size (8 is already very long for this algorithm (>15 minutes))
+		final int chessboardSize = 7;
 
 		// Instantiate adn run the greedy solver
 		final SlowBruteForceNQueensSolverWithLists genericNQueensSolver = new SlowBruteForceNQueensSolverWithLists(chessboardSize, true);

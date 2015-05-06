@@ -59,8 +59,7 @@ public final class SlowBruteForceNQueensSolverWithListsNoQueensLimit extends Gen
 		if (checkSolutionChessboard()) {
 			solutionCount++;
 			print();
-		}
-		else {
+		} else {
 
 			// Recursive call to the next position
 			final int nextX = (x + 1) % chessboardSize;
@@ -71,8 +70,7 @@ public final class SlowBruteForceNQueensSolverWithListsNoQueensLimit extends Gen
 				if (y + 1 < chessboardSize) {
 					solve(nextX, y + 1);
 				}
-			}
-			else {
+			} else {
 				solve(nextX, y);
 			}
 		}
@@ -89,8 +87,7 @@ public final class SlowBruteForceNQueensSolverWithListsNoQueensLimit extends Gen
 			if (y + 1 < chessboardSize) {
 				solve(nextX, y + 1);
 			}
-		}
-		else {
+		} else {
 			solve(nextX, y);
 		}
 	}
@@ -129,9 +126,7 @@ public final class SlowBruteForceNQueensSolverWithListsNoQueensLimit extends Gen
 					if (usedLine) {
 						return false;
 					}
-					else {
-						usedLine = true;
-					}
+					usedLine = true;
 				}
 			}
 		}
@@ -146,9 +141,7 @@ public final class SlowBruteForceNQueensSolverWithListsNoQueensLimit extends Gen
 					if (usedColumn) {
 						return false;
 					}
-					else {
-						usedColumn = true;
-					}
+					usedColumn = true;
 				}
 			}
 		}
@@ -163,9 +156,7 @@ public final class SlowBruteForceNQueensSolverWithListsNoQueensLimit extends Gen
 						if (usedDiagonal) {
 							return false;
 						}
-						else {
-							usedDiagonal = true;
-						}
+						usedDiagonal = true;
 					}
 				}
 			}
@@ -181,9 +172,7 @@ public final class SlowBruteForceNQueensSolverWithListsNoQueensLimit extends Gen
 						if (usedDiagonal) {
 							return false;
 						}
-						else {
-							usedDiagonal = true;
-						}
+						usedDiagonal = true;
 					}
 				}
 			}
@@ -200,8 +189,8 @@ public final class SlowBruteForceNQueensSolverWithListsNoQueensLimit extends Gen
 	 */
 	public static void main(final String args[]) throws InvalidSolutionsException {
 
-		// Chessboard size (8 is quite long for this algorithm)
-		final int chessboardSize = 2;
+		// Chessboard size (6 is already very long for this algorithm (>2 hours))
+		final int chessboardSize = 5;
 
 		// Instantiate adn run the greedy solver
 		final SlowBruteForceNQueensSolverWithListsNoQueensLimit genericNQueensSolver = new SlowBruteForceNQueensSolverWithListsNoQueensLimit(chessboardSize, true);

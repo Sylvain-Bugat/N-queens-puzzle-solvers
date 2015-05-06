@@ -5,19 +5,19 @@ import com.github.sbugat.nqueens.tools.InvalidSolutionsException;
 import com.github.sbugat.nqueens.tools.SequenceTools;
 
 /**
- * Greedy algorithm for the N queens puzzle solver. This algorithm is not optimized at all and is a floor value for optimisations tests.
+ * Brute-force algorithm for the N queens puzzle solver with a count of currently placed queens.
  * 
  * @author Sylvain Bugat
  * 
  */
-public final class BruteForceNQueensSolver extends GenericNQueensSolver {
+public final class BruteForceNQueensSolverCountQueens extends GenericNQueensSolver {
 
 	/** Chessboard used only to display a solution. */
 	private final boolean[][] chessboard;
 	/** Current number of placedQueens */
 	private int placedQueens;
 
-	public BruteForceNQueensSolver(final int chessboardSizeArg, final boolean printSolutionArg) {
+	public BruteForceNQueensSolverCountQueens(final int chessboardSizeArg, final boolean printSolutionArg) {
 
 		super(chessboardSizeArg, printSolutionArg);
 
@@ -35,13 +35,14 @@ public final class BruteForceNQueensSolver extends GenericNQueensSolver {
 	}
 
 	/**
-	 * Solving recursive method, do a greedy algorithm by testing all combinations.
+	 * Solving recursive method, do a brute-force algorithm by testing all combinations.
 	 * 
-	 * @param y number of the line stating at 0
+	 * @param x X position on the chessboard
+	 * @param y Y position on the chessboard
 	 */
 	private void solve(final int x, final int y) {
 
-		// Place a queen on the current position
+		// Put a queen on the current position
 		chessboard[y][x] = true;
 		placedQueens++;
 
@@ -51,31 +52,34 @@ public final class BruteForceNQueensSolver extends GenericNQueensSolver {
 				solutionCount++;
 				print();
 			}
-		}
-		else {
+		} else {
 
+			// Recursive call to the next position
 			final int nextX = (x + 1) % chessboardSize;
+			// Switch to the next line
 			if (0 == nextX) {
 
 				if (y + 1 < chessboardSize) {
 					solve(nextX, y + 1);
 				}
-			}
-			else {
+			} else {
 				solve(nextX, y);
 			}
 		}
+
+		// Remove the queen on the current position
 		placedQueens--;
 		chessboard[y][x] = false;
 
+		// Recursive call to the next position
 		final int nextX = (x + 1) % chessboardSize;
+		// Switch to the next line
 		if (0 == nextX) {
 
 			if (y + 1 < chessboardSize) {
 				solve(nextX, y + 1);
 			}
-		}
-		else {
+		} else {
 			solve(nextX, y);
 		}
 	}
@@ -97,9 +101,7 @@ public final class BruteForceNQueensSolver extends GenericNQueensSolver {
 					if (usedLine) {
 						return false;
 					}
-					else {
-						usedLine = true;
-					}
+					usedLine = true;
 				}
 			}
 		}
@@ -114,9 +116,7 @@ public final class BruteForceNQueensSolver extends GenericNQueensSolver {
 					if (usedColumn) {
 						return false;
 					}
-					else {
-						usedColumn = true;
-					}
+					usedColumn = true;
 				}
 			}
 		}
@@ -136,9 +136,7 @@ public final class BruteForceNQueensSolver extends GenericNQueensSolver {
 						if (usedDiagonal) {
 							return false;
 						}
-						else {
-							usedDiagonal = true;
-						}
+						usedDiagonal = true;
 					}
 				}
 			}
@@ -159,9 +157,7 @@ public final class BruteForceNQueensSolver extends GenericNQueensSolver {
 						if (usedDiagonal) {
 							return false;
 						}
-						else {
-							usedDiagonal = true;
-						}
+						usedDiagonal = true;
 					}
 				}
 			}
@@ -171,18 +167,18 @@ public final class BruteForceNQueensSolver extends GenericNQueensSolver {
 	}
 
 	/**
-	 * Main greedy program.
+	 * Main program.
 	 * 
 	 * @param args options
 	 * @throws InvalidSolutionsException
 	 */
 	public static void main(final String args[]) throws InvalidSolutionsException {
 
-		// Chessboard size (8 is quite long for this algorithm)
+		// Chessboard size (8 is quite long for this algorithm (>3 minutes))
 		final int chessboardSize = 8;
 
 		// Instantiate adn run the greedy solver
-		final BruteForceNQueensSolver genericNQueensSolver = new BruteForceNQueensSolver(chessboardSize, true);
+		final BruteForceNQueensSolverCountQueens genericNQueensSolver = new BruteForceNQueensSolverCountQueens(chessboardSize, true);
 		final long solutionCount = genericNQueensSolver.solve();
 
 		// End of the algorithm print the total of solution(s) found

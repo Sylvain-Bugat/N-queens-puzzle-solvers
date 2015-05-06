@@ -53,8 +53,7 @@ public final class BruteForceNQueensSolverCheckRefactored extends GenericNQueens
 					print();
 				}
 			}
-		}
-		else {
+		} else {
 
 			final int nextX = (x + 1) % chessboardSize;
 			if (0 == nextX) {
@@ -62,8 +61,7 @@ public final class BruteForceNQueensSolverCheckRefactored extends GenericNQueens
 				if (y + 1 < chessboardSize) {
 					solve(nextX, y + 1);
 				}
-			}
-			else {
+			} else {
 				solve(nextX, y);
 			}
 		}
@@ -76,8 +74,7 @@ public final class BruteForceNQueensSolverCheckRefactored extends GenericNQueens
 			if (y + 1 < chessboardSize) {
 				solve(nextX, y + 1);
 			}
-		}
-		else {
+		} else {
 			solve(nextX, y);
 		}
 	}
@@ -101,17 +98,13 @@ public final class BruteForceNQueensSolverCheckRefactored extends GenericNQueens
 					if (usedLine) {
 						return false;
 					}
-					else {
-						usedLine = true;
-					}
+					usedLine = true;
 				}
 				if (chessboard[j][i]) {
 					if (usedColumn) {
 						return false;
 					}
-					else {
-						usedColumn = true;
-					}
+					usedColumn = true;
 				}
 			}
 		}
@@ -133,9 +126,7 @@ public final class BruteForceNQueensSolverCheckRefactored extends GenericNQueens
 						if (usedDescendingDiagonal) {
 							return false;
 						}
-						else {
-							usedDescendingDiagonal = true;
-						}
+						usedDescendingDiagonal = true;
 					}
 				}
 				if (ascendingX >= 0 && ascendingX < chessboardSize) {
@@ -144,9 +135,7 @@ public final class BruteForceNQueensSolverCheckRefactored extends GenericNQueens
 						if (usedAscendingDiagonal) {
 							return false;
 						}
-						else {
-							usedAscendingDiagonal = true;
-						}
+						usedAscendingDiagonal = true;
 					}
 				}
 			}
