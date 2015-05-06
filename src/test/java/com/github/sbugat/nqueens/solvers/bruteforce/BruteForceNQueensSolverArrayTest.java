@@ -8,11 +8,11 @@ import com.github.sbugat.nqueens.GenericNQueensSolverTest;
  * @author Sylvain Bugat
  * 
  */
-public final class BruteForceNQueensSolverCountQueensTest extends GenericNQueensSolverTest {
+public final class BruteForceNQueensSolverArrayTest extends GenericNQueensSolverTest {
 
-	public BruteForceNQueensSolverCountQueensTest() {
+	public BruteForceNQueensSolverArrayTest() {
 
 		// Test only with a size of 6 because this algorithm is very slow
-		super(new BruteForceNQueensSolverCountQueens(6, false));
+		super(new BruteForceNQueensSolverArray(6, false));
 	}
 }
