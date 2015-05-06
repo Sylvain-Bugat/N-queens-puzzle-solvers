@@ -8,7 +8,7 @@ import com.github.sbugat.nqueens.tools.InvalidSolutionsException;
 import com.github.sbugat.nqueens.tools.SequenceTools;
 
 /**
- * Slow greedy algorithm for the N queens puzzle solver. This algorithm is not optimized at all and is a floor value for optimisations tests.
+ * Slow brute-force algorithm for the N queens puzzle solver.
  * 
  * @author Sylvain Bugat
  * 

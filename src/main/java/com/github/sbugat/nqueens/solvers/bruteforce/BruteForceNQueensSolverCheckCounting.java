@@ -5,7 +5,7 @@ import com.github.sbugat.nqueens.tools.InvalidSolutionsException;
 import com.github.sbugat.nqueens.tools.SequenceTools;
 
 /**
- * Greedy algorithm for the N queens puzzle solver. This algorithm is not optimized at all and is a floor value for optimisations tests.
+ * Brute-force algorithm for the N queens puzzle solver.
  * 
  * @author Sylvain Bugat
  * 
@@ -51,8 +51,7 @@ public final class BruteForceNQueensSolverCheckCounting extends GenericNQueensSo
 				solutionCount++;
 				print();
 			}
-		}
-		else {
+		} else {
 
 			final int nextX = (x + 1) % chessboardSize;
 			if (0 == nextX) {
@@ -60,8 +59,7 @@ public final class BruteForceNQueensSolverCheckCounting extends GenericNQueensSo
 				if (y + 1 < chessboardSize) {
 					solve(nextX, y + 1);
 				}
-			}
-			else {
+			} else {
 				solve(nextX, y);
 			}
 		}
@@ -74,8 +72,7 @@ public final class BruteForceNQueensSolverCheckCounting extends GenericNQueensSo
 			if (y + 1 < chessboardSize) {
 				solve(nextX, y + 1);
 			}
-		}
-		else {
+		} else {
 			solve(nextX, y);
 		}
 	}

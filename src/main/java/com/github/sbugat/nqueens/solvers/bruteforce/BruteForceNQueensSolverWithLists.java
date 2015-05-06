@@ -61,8 +61,7 @@ public final class BruteForceNQueensSolverWithLists extends GenericNQueensSolver
 				solutionCount++;
 				print();
 			}
-		}
-		else {
+		} else {
 
 			final int nextX = (x + 1) % chessboardSize;
 			if (0 == nextX) {
@@ -70,8 +69,7 @@ public final class BruteForceNQueensSolverWithLists extends GenericNQueensSolver
 				if (y + 1 < chessboardSize) {
 					solve(nextX, y + 1);
 				}
-			}
-			else {
+			} else {
 				solve(nextX, y);
 			}
 		}
@@ -84,8 +82,7 @@ public final class BruteForceNQueensSolverWithLists extends GenericNQueensSolver
 			if (y + 1 < chessboardSize) {
 				solve(nextX, y + 1);
 			}
-		}
-		else {
+		} else {
 			solve(nextX, y);
 		}
 	}
@@ -107,9 +104,7 @@ public final class BruteForceNQueensSolverWithLists extends GenericNQueensSolver
 					if (usedLine) {
 						return false;
 					}
-					else {
-						usedLine = true;
-					}
+					usedLine = true;
 				}
 			}
 		}
@@ -124,9 +119,7 @@ public final class BruteForceNQueensSolverWithLists extends GenericNQueensSolver
 					if (usedColumn) {
 						return false;
 					}
-					else {
-						usedColumn = true;
-					}
+					usedColumn = true;
 				}
 			}
 		}
@@ -146,9 +139,7 @@ public final class BruteForceNQueensSolverWithLists extends GenericNQueensSolver
 						if (usedDiagonal) {
 							return false;
 						}
-						else {
-							usedDiagonal = true;
-						}
+						usedDiagonal = true;
 					}
 				}
 			}
@@ -169,9 +160,7 @@ public final class BruteForceNQueensSolverWithLists extends GenericNQueensSolver
 						if (usedDiagonal) {
 							return false;
 						}
-						else {
-							usedDiagonal = true;
-						}
+						usedDiagonal = true;
 					}
 				}
 			}

@@ -51,8 +51,7 @@ public final class BruteForceNQueensSolverOneDimension extends GenericNQueensSol
 				solutionCount++;
 				print();
 			}
-		}
-		else {
+		} else {
 
 			if (i + 1 < chessboard.length) {
 				solve(i + 1);
@@ -83,9 +82,7 @@ public final class BruteForceNQueensSolverOneDimension extends GenericNQueensSol
 					if (usedLine) {
 						return false;
 					}
-					else {
-						usedLine = true;
-					}
+					usedLine = true;
 				}
 			}
 		}
@@ -100,9 +97,7 @@ public final class BruteForceNQueensSolverOneDimension extends GenericNQueensSol
 					if (usedColumn) {
 						return false;
 					}
-					else {
-						usedColumn = true;
-					}
+					usedColumn = true;
 				}
 			}
 		}
@@ -122,9 +117,7 @@ public final class BruteForceNQueensSolverOneDimension extends GenericNQueensSol
 						if (usedDiagonal) {
 							return false;
 						}
-						else {
-							usedDiagonal = true;
-						}
+						usedDiagonal = true;
 					}
 				}
 			}
@@ -145,9 +138,7 @@ public final class BruteForceNQueensSolverOneDimension extends GenericNQueensSol
 						if (usedDiagonal) {
 							return false;
 						}
-						else {
-							usedDiagonal = true;
-						}
+						usedDiagonal = true;
 					}
 				}
 			}

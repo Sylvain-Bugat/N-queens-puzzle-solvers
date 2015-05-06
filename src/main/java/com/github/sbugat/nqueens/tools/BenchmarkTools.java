@@ -42,16 +42,18 @@ public abstract class BenchmarkTools {
 
 	public static String nanoSecondsToString(final long nanoSeconds) {
 
-		if (nanoSeconds < 1_000) {
-			return nanoSeconds + "ns";
-		}
-		else if (nanoSeconds < 1_000_000) {
-			return String.format("%.2f µs", nanoSeconds / 1_000.0);
-		}
-		else if (nanoSeconds < 1_000_000_000) {
-			return String.format("%.2f ms", nanoSeconds / 1_000_000.0);
+		if (nanoSeconds < 1_000L) {
+			return nanoSeconds + "ns"; //$NON-NLS-1$
+		} else if (nanoSeconds < 1_000_000L) {
+			return String.format("%.2f µs", Double.valueOf(nanoSeconds / 1_000.0)); //$NON-NLS-1$
+		} else if (nanoSeconds < 1_000_000_000L) {
+			return String.format("%.2f ms", Double.valueOf(nanoSeconds / 1_000_000.0)); //$NON-NLS-1$
+		} else if (nanoSeconds < 60_000_000_000L) {
+			return String.format("%.2f s", Double.valueOf(nanoSeconds / 1_000_000_000.0)); //$NON-NLS-1$
+		} else if (nanoSeconds < 3_600_000_000_000L) {
+			return String.format("%d.%02d m", Long.valueOf(nanoSeconds / 60_000_000_000L), Long.valueOf((nanoSeconds / 1_000_000_000L) % 60L)); //$NON-NLS-1$
 		}
 
-		return String.format("%.2f s", nanoSeconds / 1_000_000_000.0);
+		return String.format("%d.%02d h", Long.valueOf(nanoSeconds / 3_600_000_000_000L), Long.valueOf((nanoSeconds / 60_000_000_000L) % 60L)); //$NON-NLS-1$
 	}
 }
