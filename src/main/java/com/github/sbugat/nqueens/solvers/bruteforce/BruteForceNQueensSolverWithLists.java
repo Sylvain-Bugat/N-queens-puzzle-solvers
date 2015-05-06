@@ -8,7 +8,7 @@ import com.github.sbugat.nqueens.tools.InvalidSolutionsException;
 import com.github.sbugat.nqueens.tools.SequenceTools;
 
 /**
- * Greedy algorithm for the N queens puzzle solver. This algorithm is not optimized at all and is a floor value for optimisations tests.
+ * Brute-force algorithm for the N queens puzzle solver with a variable containing the queen number constraint.
  * 
  * @author Sylvain Bugat
  * 
@@ -17,7 +17,7 @@ public final class BruteForceNQueensSolverWithLists extends GenericNQueensSolver
 
 	/** Chessboard used only to display a solution. */
 	private final List<List<Boolean>> chessboard;
-	/** Current number of placedQueens */
+	/** Current number of queens. */
 	private int placedQueens;
 
 	public BruteForceNQueensSolverWithLists(final int chessboardSizeArg, final boolean printSolutionArg) {
@@ -25,9 +25,9 @@ public final class BruteForceNQueensSolverWithLists extends GenericNQueensSolver
 		super(chessboardSizeArg, printSolutionArg);
 
 		chessboard = new ArrayList<>();
-		for (int y = 0; y < chessboardSizeArg; y++) {
+		for (int x = 0; x < chessboardSizeArg; x++) {
 			final List<Boolean> lineList = new ArrayList<>();
-			for (int x = 0; x < chessboardSizeArg; x++) {
+			for (int y = 0; y < chessboardSizeArg; y++) {
 				lineList.add(Boolean.FALSE);
 			}
 			chessboard.add(lineList);
@@ -47,12 +47,13 @@ public final class BruteForceNQueensSolverWithLists extends GenericNQueensSolver
 	/**
 	 * Solving recursive method, do a greedy algorithm by testing all combinations.
 	 * 
-	 * @param y number of the line stating at 0
+	 * @param x X position on the chessboard
+	 * @param y Y position on the chessboard
 	 */
 	private void solve(final int x, final int y) {
 
-		// Place a queen on the current position
-		chessboard.get(y).set(x, Boolean.TRUE);
+		// Put a queen on the current position
+		chessboard.get(x).set(y, Boolean.TRUE);
 		placedQueens++;
 
 		// All queens are sets on the chessboard then a solution may be present
@@ -61,28 +62,39 @@ public final class BruteForceNQueensSolverWithLists extends GenericNQueensSolver
 				solutionCount++;
 				print();
 			}
-		} else {
+		}
+		else {
 
+			// Recursive call to the next position
 			final int nextX = (x + 1) % chessboardSize;
+			// Switch to the next line
 			if (0 == nextX) {
 
+				// End of the chessboard check
 				if (y + 1 < chessboardSize) {
 					solve(nextX, y + 1);
 				}
-			} else {
+			}
+			else {
 				solve(nextX, y);
 			}
 		}
-		placedQueens--;
-		chessboard.get(y).set(x, Boolean.FALSE);
 
+		// Remove the queen on the current position
+		placedQueens--;
+		chessboard.get(x).set(y, Boolean.FALSE);
+
+		// Recursive call to the next position
 		final int nextX = (x + 1) % chessboardSize;
+		// Switch to the next line
 		if (0 == nextX) {
 
+			// End of the chessboard check
 			if (y + 1 < chessboardSize) {
 				solve(nextX, y + 1);
 			}
-		} else {
+		}
+		else {
 			solve(nextX, y);
 		}
 	}
@@ -100,7 +112,7 @@ public final class BruteForceNQueensSolverWithLists extends GenericNQueensSolver
 			boolean usedLine = false;
 			for (int x = 0; x < chessboardSize; x++) {
 
-				if (chessboard.get(y).get(x).booleanValue()) {
+				if (chessboard.get(x).get(y).booleanValue()) {
 					if (usedLine) {
 						return false;
 					}
@@ -115,7 +127,7 @@ public final class BruteForceNQueensSolverWithLists extends GenericNQueensSolver
 			boolean usedColumn = false;
 			for (int y = 0; y < chessboardSize; y++) {
 
-				if (chessboard.get(y).get(x).booleanValue()) {
+				if (chessboard.get(x).get(y).booleanValue()) {
 					if (usedColumn) {
 						return false;
 					}
@@ -135,7 +147,7 @@ public final class BruteForceNQueensSolverWithLists extends GenericNQueensSolver
 
 				if (x >= 0 && x < chessboardSize) {
 
-					if (chessboard.get(y).get(x).booleanValue()) {
+					if (chessboard.get(x).get(y).booleanValue()) {
 						if (usedDiagonal) {
 							return false;
 						}
@@ -156,7 +168,7 @@ public final class BruteForceNQueensSolverWithLists extends GenericNQueensSolver
 
 				if (x >= 0 && x < chessboardSize) {
 
-					if (chessboard.get(y).get(x).booleanValue()) {
+					if (chessboard.get(x).get(y).booleanValue()) {
 						if (usedDiagonal) {
 							return false;
 						}
@@ -192,6 +204,6 @@ public final class BruteForceNQueensSolverWithLists extends GenericNQueensSolver
 
 	@Override
 	public boolean getChessboardPosition(final int x, final int y) {
-		return chessboard.get(y).get(x).booleanValue();
+		return chessboard.get(x).get(y).booleanValue();
 	}
 }

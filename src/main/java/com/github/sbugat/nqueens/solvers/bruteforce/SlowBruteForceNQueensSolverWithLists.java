@@ -8,7 +8,7 @@ import com.github.sbugat.nqueens.tools.InvalidSolutionsException;
 import com.github.sbugat.nqueens.tools.SequenceTools;
 
 /**
- * Slow brute-force algorithm for the N queens puzzle solver.
+ * Slow brute-force algorithm for the N queens puzzle solver with a queen limit of N (size of the chessboard).
  * 
  * @author Sylvain Bugat
  * 
@@ -59,7 +59,8 @@ public final class SlowBruteForceNQueensSolverWithLists extends GenericNQueensSo
 				solutionCount++;
 				print();
 			}
-		} else {
+		}
+		else {
 
 			// Recursive call to the next position
 			final int nextX = (x + 1) % chessboardSize;
@@ -70,7 +71,8 @@ public final class SlowBruteForceNQueensSolverWithLists extends GenericNQueensSo
 				if (y + 1 < chessboardSize) {
 					solve(nextX, y + 1);
 				}
-			} else {
+			}
+			else {
 				solve(nextX, y);
 			}
 		}
@@ -87,7 +89,8 @@ public final class SlowBruteForceNQueensSolverWithLists extends GenericNQueensSo
 			if (y + 1 < chessboardSize) {
 				solve(nextX, y + 1);
 			}
-		} else {
+		}
+		else {
 			solve(nextX, y);
 		}
 	}
