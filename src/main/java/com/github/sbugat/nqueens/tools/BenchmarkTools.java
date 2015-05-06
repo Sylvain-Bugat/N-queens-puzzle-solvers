@@ -18,6 +18,7 @@ public abstract class BenchmarkTools {
 			final long startNanoTime = System.nanoTime();
 			final long solutionCount = genericNQueensSolver.solve();
 			final long endNanoTime = System.nanoTime();
+			System.out.print('.');
 
 			SequenceTools.checkSolutionsFound(genericNQueensSolver.getPuzzleSize(), solutionCount);
 
@@ -44,16 +45,20 @@ public abstract class BenchmarkTools {
 
 		if (nanoSeconds < 1_000L) {
 			return nanoSeconds + "ns"; //$NON-NLS-1$
-		} else if (nanoSeconds < 1_000_000L) {
+		}
+		else if (nanoSeconds < 1_000_000L) {
 			return String.format("%.2f µs", Double.valueOf(nanoSeconds / 1_000.0)); //$NON-NLS-1$
-		} else if (nanoSeconds < 1_000_000_000L) {
+		}
+		else if (nanoSeconds < 1_000_000_000L) {
 			return String.format("%.2f ms", Double.valueOf(nanoSeconds / 1_000_000.0)); //$NON-NLS-1$
-		} else if (nanoSeconds < 60_000_000_000L) {
+		}
+		else if (nanoSeconds < 60_000_000_000L) {
 			return String.format("%.2f s", Double.valueOf(nanoSeconds / 1_000_000_000.0)); //$NON-NLS-1$
-		} else if (nanoSeconds < 3_600_000_000_000L) {
-			return String.format("%d.%02d m", Long.valueOf(nanoSeconds / 60_000_000_000L), Long.valueOf((nanoSeconds / 1_000_000_000L) % 60L)); //$NON-NLS-1$
+		}
+		else if (nanoSeconds < 3_600_000_000_000L) {
+			return String.format("%d.%02d m", Long.valueOf(nanoSeconds / 60_000_000_000L), Long.valueOf(nanoSeconds / 1_000_000_000L % 60L)); //$NON-NLS-1$
 		}
 
-		return String.format("%d.%02d h", Long.valueOf(nanoSeconds / 3_600_000_000_000L), Long.valueOf((nanoSeconds / 60_000_000_000L) % 60L)); //$NON-NLS-1$
+		return String.format("%d.%02d h", Long.valueOf(nanoSeconds / 3_600_000_000_000L), Long.valueOf(nanoSeconds / 60_000_000_000L % 60L)); //$NON-NLS-1$
 	}
 }
