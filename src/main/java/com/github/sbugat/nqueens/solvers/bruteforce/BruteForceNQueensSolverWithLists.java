@@ -15,9 +15,9 @@ import com.github.sbugat.nqueens.tools.SequenceTools;
  */
 public final class BruteForceNQueensSolverWithLists extends GenericNQueensSolver {
 
-	/** Chessboard used only to display a solution. */
+	/** Chessboard represented by a list of lists. */
 	private final List<List<Boolean>> chessboard;
-	/** Current number of queens. */
+	/** Current number of queens on the chessboard. */
 	private int placedQueens;
 
 	public BruteForceNQueensSolverWithLists(final int chessboardSizeArg, final boolean printSolutionArg) {
@@ -62,8 +62,7 @@ public final class BruteForceNQueensSolverWithLists extends GenericNQueensSolver
 				solutionCount++;
 				print();
 			}
-		}
-		else {
+		} else {
 
 			// Recursive call to the next position
 			final int nextX = (x + 1) % chessboardSize;
@@ -74,8 +73,7 @@ public final class BruteForceNQueensSolverWithLists extends GenericNQueensSolver
 				if (y + 1 < chessboardSize) {
 					solve(nextX, y + 1);
 				}
-			}
-			else {
+			} else {
 				solve(nextX, y);
 			}
 		}
@@ -93,8 +91,7 @@ public final class BruteForceNQueensSolverWithLists extends GenericNQueensSolver
 			if (y + 1 < chessboardSize) {
 				solve(nextX, y + 1);
 			}
-		}
-		else {
+		} else {
 			solve(nextX, y);
 		}
 	}

@@ -10,9 +10,9 @@ import com.github.sbugat.nqueens.GenericNQueensSolver;
  */
 public final class BruteForceNQueensSolverArray extends GenericNQueensSolver {
 
-	/** Chessboard used only to display a solution. */
+	/** Chessboard represented by a 2 dimentionnal array. */
 	private final boolean[][] chessboard;
-	/** Current number of placedQueens */
+	/** Current number of queens on the chessboard. */
 	private int placedQueens;
 
 	public BruteForceNQueensSolverArray(final int chessboardSizeArg, final boolean printSolutionArg) {
@@ -41,7 +41,7 @@ public final class BruteForceNQueensSolverArray extends GenericNQueensSolver {
 	private void solve(final int x, final int y) {
 
 		// Put a queen on the current position
-		chessboard[y][x] = true;
+		chessboard[x][y] = true;
 		placedQueens++;
 
 		// All queens are sets on the chessboard then a solution may be present
@@ -50,37 +50,36 @@ public final class BruteForceNQueensSolverArray extends GenericNQueensSolver {
 				solutionCount++;
 				print();
 			}
-		}
-		else {
+		} else {
 
 			// Recursive call to the next position
 			final int nextX = (x + 1) % chessboardSize;
 			// Switch to the next line
 			if (0 == nextX) {
 
+				// End of the chessboard check
 				if (y + 1 < chessboardSize) {
 					solve(nextX, y + 1);
 				}
-			}
-			else {
+			} else {
 				solve(nextX, y);
 			}
 		}
 
 		// Remove the queen on the current position
 		placedQueens--;
-		chessboard[y][x] = false;
+		chessboard[x][y] = false;
 
 		// Recursive call to the next position
 		final int nextX = (x + 1) % chessboardSize;
 		// Switch to the next line
 		if (0 == nextX) {
 
+			// End of the chessboard check
 			if (y + 1 < chessboardSize) {
 				solve(nextX, y + 1);
 			}
-		}
-		else {
+		} else {
 			solve(nextX, y);
 		}
 	}
@@ -92,13 +91,13 @@ public final class BruteForceNQueensSolverArray extends GenericNQueensSolver {
 	 */
 	private boolean checkSolutionChessboard() {
 
-		// Check if 2 queens are on the same line
+		// Check if 2 queens are on the same column
 		for (int y = 0; y < chessboardSize; y++) {
 
 			boolean usedLine = false;
 			for (int x = 0; x < chessboardSize; x++) {
 
-				if (chessboard[y][x]) {
+				if (chessboard[x][y]) {
 					if (usedLine) {
 						return false;
 					}
@@ -107,13 +106,13 @@ public final class BruteForceNQueensSolverArray extends GenericNQueensSolver {
 			}
 		}
 
-		// Check if 2 queens are on the same column
+		// Check if 2 queens are on the same line
 		for (int x = 0; x < chessboardSize; x++) {
 
 			boolean usedColumn = false;
 			for (int y = 0; y < chessboardSize; y++) {
 
-				if (chessboard[y][x]) {
+				if (chessboard[x][y]) {
 					if (usedColumn) {
 						return false;
 					}
@@ -133,7 +132,7 @@ public final class BruteForceNQueensSolverArray extends GenericNQueensSolver {
 
 				if (x >= 0 && x < chessboardSize) {
 
-					if (chessboard[y][x]) {
+					if (chessboard[x][y]) {
 						if (usedDiagonal) {
 							return false;
 						}
@@ -154,7 +153,7 @@ public final class BruteForceNQueensSolverArray extends GenericNQueensSolver {
 
 				if (x >= 0 && x < chessboardSize) {
 
-					if (chessboard[y][x]) {
+					if (chessboard[x][y]) {
 						if (usedDiagonal) {
 							return false;
 						}
@@ -169,6 +168,6 @@ public final class BruteForceNQueensSolverArray extends GenericNQueensSolver {
 
 	@Override
 	public boolean getChessboardPosition(final int x, final int y) {
-		return chessboard[y][x];
+		return chessboard[x][y];
 	}
 }
