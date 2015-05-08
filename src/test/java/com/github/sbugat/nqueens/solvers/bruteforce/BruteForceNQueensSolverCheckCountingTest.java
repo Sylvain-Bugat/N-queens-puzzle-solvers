@@ -10,9 +10,11 @@ import com.github.sbugat.nqueens.GenericNQueensSolverTest;
  */
 public final class BruteForceNQueensSolverCheckCountingTest extends GenericNQueensSolverTest {
 
+	/** Test only with a size of 6 because this algorithm is very slow. */
+	private static final int MAXIMUM_TESTED_CHESSBOARD_SIZE = 6;
+
 	public BruteForceNQueensSolverCheckCountingTest() {
 
-		// Test only with a size of 6 because this algorithm is very very slow
-		super(new BruteForceNQueensSolverCheckCounting(6, false));
+		super(new BruteForceNQueensSolverCheckCounting(MAXIMUM_TESTED_CHESSBOARD_SIZE, false), MAXIMUM_TESTED_CHESSBOARD_SIZE);
 	}
 }

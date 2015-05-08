@@ -8,16 +8,28 @@ import com.github.sbugat.nqueens.tools.SequenceTools;
 public abstract class GenericNQueensSolverTest {
 
 	/** The solver to test. */
-	protected final GenericNQueensSolver genericNQueensSolver;
+	private final GenericNQueensSolver genericNQueensSolver;
 
-	protected GenericNQueensSolverTest(final GenericNQueensSolver genericNQueensSolverArg) {
+	/** The maximum chessboard size to test. */
+	private final int maximumChessboardSize;
+
+	protected GenericNQueensSolverTest(final GenericNQueensSolver genericNQueensSolverArg, final int maximumChessboardSizeArg) {
 		genericNQueensSolver = genericNQueensSolverArg;
+		maximumChessboardSize = maximumChessboardSizeArg;
 	}
 
 	@Test
 	public void testNQueensSolver() {
 
-		final long solutionCount = genericNQueensSolver.solve();
-		Assertions.assertThat(solutionCount).isEqualTo(SequenceTools.getExpectedSolutions(genericNQueensSolver.getPuzzleSize()));
+		for (int chessboardSize = 1; chessboardSize <= maximumChessboardSize; chessboardSize++) {
+
+			// Set the chessboard size and reset all temporary data
+			genericNQueensSolver.setChessboardSize(chessboardSize);
+			genericNQueensSolver.reset();
+
+			// Solve with the chessboard size and compare the number of solutions with the expected sequence
+			final long solutionCount = genericNQueensSolver.solve();
+			Assertions.assertThat(solutionCount).isEqualTo(SequenceTools.getExpectedSolutions(genericNQueensSolver.getChessboardSize()));
+		}
 	}
 }

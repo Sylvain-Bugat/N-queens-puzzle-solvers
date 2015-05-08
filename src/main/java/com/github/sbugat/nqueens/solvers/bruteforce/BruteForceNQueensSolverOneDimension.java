@@ -35,7 +35,7 @@ public final class BruteForceNQueensSolverOneDimension extends GenericNQueensSol
 	}
 
 	/**
-	 * Solving recursive method, do a greedy algorithm by testing all combinations.
+	 * Solving recursive method, do a brute-force algorithm by testing all possible combinations.
 	 * 
 	 * @param i index of the unique dimension
 	 */

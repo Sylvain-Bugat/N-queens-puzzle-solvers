@@ -20,7 +20,7 @@ public abstract class BenchmarkTools {
 			final long endNanoTime = System.nanoTime();
 			System.out.print('.');
 
-			SequenceTools.checkSolutionsFound(genericNQueensSolver.getPuzzleSize(), solutionCount);
+			SequenceTools.checkSolutionsFound(genericNQueensSolver.getChessboardSize(), solutionCount);
 
 			benckmark.add(Long.valueOf(endNanoTime - startNanoTime));
 		}

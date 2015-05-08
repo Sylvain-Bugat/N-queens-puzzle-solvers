@@ -3,7 +3,7 @@ package com.github.sbugat.nqueens;
 public abstract class GenericNQueensSolver {
 
 	/** Size of the chess board. */
-	protected final int chessboardSize;
+	protected int chessboardSize;
 
 	/** Number of solution counter. */
 	protected long solutionCount;
@@ -40,8 +40,12 @@ public abstract class GenericNQueensSolver {
 		}
 	}
 
-	public final int getPuzzleSize() {
+	public final int getChessboardSize() {
 		return chessboardSize;
+	}
+
+	public final void setChessboardSize(final int chessboardSizeArg) {
+		chessboardSize = chessboardSizeArg;
 	}
 
 	public abstract long solve();

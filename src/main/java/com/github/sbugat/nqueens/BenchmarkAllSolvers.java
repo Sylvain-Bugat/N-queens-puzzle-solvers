@@ -38,7 +38,7 @@ public abstract class BenchmarkAllSolvers {
 	public static void main(final String args[]) throws InvalidSolutionsException {
 
 		// Chessboard size
-		final int chessboardSize = 7;
+		final int chessboardSize = 8;
 		final int benchmarkRun = 5;
 
 		final List<GenericNQueensSolver> genericNQueensSolverList = getSolvers(chessboardSize);
@@ -49,7 +49,7 @@ public abstract class BenchmarkAllSolvers {
 
 			System.out.print(genericNQueensSolver.getClass().getSimpleName() + ": "); //$NON-NLS-1$
 			final long solverBenchmark = BenchmarkTools.benchmark(genericNQueensSolver, benchmarkRun);
-			System.out.println(" done! - " + BenchmarkTools.nanoSecondsToString(solverBenchmark)); //$NON-NLS-1$
+			System.out.println("\nDone! - " + BenchmarkTools.nanoSecondsToString(solverBenchmark)); //$NON-NLS-1$
 
 			System.out.println("End: " + new Date()); //$NON-NLS-1$
 		}
