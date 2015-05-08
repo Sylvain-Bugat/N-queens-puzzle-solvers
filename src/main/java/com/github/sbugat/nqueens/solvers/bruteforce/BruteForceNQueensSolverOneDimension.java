@@ -41,7 +41,7 @@ public final class BruteForceNQueensSolverOneDimension extends GenericNQueensSol
 	 */
 	private void solve(final int i) {
 
-		// Place a queen on the current position
+		// Put a queen on the current position
 		chessboard[i] = true;
 		placedQueens++;
 
@@ -51,15 +51,20 @@ public final class BruteForceNQueensSolverOneDimension extends GenericNQueensSol
 				solutionCount++;
 				print();
 			}
-		} else {
+		}
+		else {
 
+			// End of the chessboard check
 			if (i + 1 < chessboard.length) {
 				solve(i + 1);
 			}
 		}
+
+		// Remove the queen on the current position
 		placedQueens--;
 		chessboard[i] = false;
 
+		// End of the chessboard check
 		if (i + 1 < chessboard.length) {
 			solve(i + 1);
 		}
