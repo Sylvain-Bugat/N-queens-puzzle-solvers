@@ -12,7 +12,7 @@ import com.github.sbugat.nqueens.tools.SequenceTools;
  */
 public final class BruteForceNQueensSolverOneDimension extends GenericNQueensSolver {
 
-	/** Chessboard only one one dimension with all lines. */
+	/** Chessboard with only one dimension with all lines. */
 	private final boolean[] chessboard;
 	/** Current number of placedQueens */
 	private int placedQueens;
@@ -45,7 +45,7 @@ public final class BruteForceNQueensSolverOneDimension extends GenericNQueensSol
 		chessboard[i] = true;
 		placedQueens++;
 
-		// All queens are sets on the chessboard then a solution may be present
+		// All queens are sets then a solution may be present
 		if (placedQueens >= chessboardSize) {
 			if (checkSolutionChessboard()) {
 				solutionCount++;
