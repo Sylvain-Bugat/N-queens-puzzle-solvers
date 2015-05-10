@@ -8,7 +8,7 @@ import com.github.sbugat.nqueens.GenericNQueensSolver;
  * @author Sylvain Bugat
  * 
  */
-public final class BruteForceNQueensSolverGridConstraits extends GenericNQueensSolver {
+public final class BruteForceNQueensSolverGridConstraints extends GenericNQueensSolver {
 
 	/** Chessboard with only one dimension with all lines. */
 	private boolean[] chessboard;
@@ -24,7 +24,7 @@ public final class BruteForceNQueensSolverGridConstraits extends GenericNQueensS
 	/** Current number of placedQueens */
 	private int placedQueens;
 
-	public BruteForceNQueensSolverGridConstraits(final int chessboardSizeArg, final boolean printSolutionArg) {
+	public BruteForceNQueensSolverGridConstraints(final int chessboardSizeArg, final boolean printSolutionArg) {
 
 		super(chessboardSizeArg, printSolutionArg);
 
@@ -60,10 +60,10 @@ public final class BruteForceNQueensSolverGridConstraits extends GenericNQueensS
 		chessboard[position] = true;
 		lineCounts[y]++;
 		columnCounts[x]++;
-		final int ascendingDiagnonal = x + y;
-		final int descendingDiagnonal = x + chessboardSize - 1 - y;
-		ascendingDiagonalCounts[ascendingDiagnonal]++;
-		descendingDiagonalCounts[descendingDiagnonal]++;
+		final int ascendingDiagonal = x + y;
+		final int descendingDiagonal = x + chessboardSize - 1 - y;
+		ascendingDiagonalCounts[ascendingDiagonal]++;
+		descendingDiagonalCounts[descendingDiagonal]++;
 		placedQueens++;
 
 		// All queens are sets then a solution may be present
@@ -83,8 +83,8 @@ public final class BruteForceNQueensSolverGridConstraits extends GenericNQueensS
 
 		// Remove the queen on the current position
 		placedQueens--;
-		ascendingDiagonalCounts[ascendingDiagnonal]--;
-		descendingDiagonalCounts[descendingDiagnonal]--;
+		ascendingDiagonalCounts[ascendingDiagonal]--;
+		descendingDiagonalCounts[descendingDiagonal]--;
 		lineCounts[y]--;
 		columnCounts[x]--;
 		chessboard[position] = false;

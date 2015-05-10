@@ -15,6 +15,6 @@ public final class BruteForceNQueensSolverGridConstraintsTest extends GenericNQu
 
 	public BruteForceNQueensSolverGridConstraintsTest() {
 
-		super(new BruteForceNQueensSolverGridConstraits(MAXIMUM_TESTED_CHESSBOARD_SIZE, false), MAXIMUM_TESTED_CHESSBOARD_SIZE);
+		super(new BruteForceNQueensSolverGridConstraints(MAXIMUM_TESTED_CHESSBOARD_SIZE, false), MAXIMUM_TESTED_CHESSBOARD_SIZE);
 	}
 }
