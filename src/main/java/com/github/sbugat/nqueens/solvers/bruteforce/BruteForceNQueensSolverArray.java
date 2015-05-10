@@ -10,7 +10,7 @@ import com.github.sbugat.nqueens.GenericNQueensSolver;
  */
 public final class BruteForceNQueensSolverArray extends GenericNQueensSolver {
 
-	/** Chessboard represented by a 2 dimentionnal array. */
+	/** Chessboard represented by a 2 dimensional array. */
 	private final boolean[][] chessboard;
 	/** Current number of queens on the chessboard. */
 	private int placedQueens;
@@ -50,7 +50,8 @@ public final class BruteForceNQueensSolverArray extends GenericNQueensSolver {
 				solutionCount++;
 				print();
 			}
-		} else {
+		}
+		else {
 
 			// Recursive call to the next position
 			final int nextX = (x + 1) % chessboardSize;
@@ -61,7 +62,8 @@ public final class BruteForceNQueensSolverArray extends GenericNQueensSolver {
 				if (y + 1 < chessboardSize) {
 					solve(nextX, y + 1);
 				}
-			} else {
+			}
+			else {
 				solve(nextX, y);
 			}
 		}
@@ -79,7 +81,8 @@ public final class BruteForceNQueensSolverArray extends GenericNQueensSolver {
 			if (y + 1 < chessboardSize) {
 				solve(nextX, y + 1);
 			}
-		} else {
+		}
+		else {
 			solve(nextX, y);
 		}
 	}
