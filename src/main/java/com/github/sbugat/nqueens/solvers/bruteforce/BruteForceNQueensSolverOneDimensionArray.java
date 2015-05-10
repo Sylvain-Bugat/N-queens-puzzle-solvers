@@ -1,23 +1,21 @@
 package com.github.sbugat.nqueens.solvers.bruteforce;
 
 import com.github.sbugat.nqueens.GenericNQueensSolver;
-import com.github.sbugat.nqueens.tools.InvalidSolutionsException;
-import com.github.sbugat.nqueens.tools.SequenceTools;
 
 /**
- * Greedy algorithm for the N queens puzzle solver. This algorithm is not optimized at all and is a floor value for optimisations tests.
+ * Brute-force algorithm for the N queens puzzle solver.
  * 
  * @author Sylvain Bugat
  * 
  */
-public final class BruteForceNQueensSolverOneDimension extends GenericNQueensSolver {
+public final class BruteForceNQueensSolverOneDimensionArray extends GenericNQueensSolver {
 
 	/** Chessboard with only one dimension with all lines. */
-	private final boolean[] chessboard;
+	private boolean[] chessboard;
 	/** Current number of placedQueens */
 	private int placedQueens;
 
-	public BruteForceNQueensSolverOneDimension(final int chessboardSizeArg, final boolean printSolutionArg) {
+	public BruteForceNQueensSolverOneDimensionArray(final int chessboardSizeArg, final boolean printSolutionArg) {
 
 		super(chessboardSizeArg, printSolutionArg);
 
@@ -37,12 +35,12 @@ public final class BruteForceNQueensSolverOneDimension extends GenericNQueensSol
 	/**
 	 * Solving recursive method, do a brute-force algorithm by testing all possible combinations.
 	 * 
-	 * @param i index of the unique dimension
+	 * @param position index of the unique dimension
 	 */
-	private void solve(final int i) {
+	private void solve(final int position) {
 
 		// Put a queen on the current position
-		chessboard[i] = true;
+		chessboard[position] = true;
 		placedQueens++;
 
 		// All queens are sets then a solution may be present
@@ -55,18 +53,18 @@ public final class BruteForceNQueensSolverOneDimension extends GenericNQueensSol
 		else {
 
 			// End of the chessboard check
-			if (i + 1 < chessboard.length) {
-				solve(i + 1);
+			if (position + 1 < chessboard.length) {
+				solve(position + 1);
 			}
 		}
 
 		// Remove the queen on the current position
 		placedQueens--;
-		chessboard[i] = false;
+		chessboard[position] = false;
 
 		// End of the chessboard check
-		if (i + 1 < chessboard.length) {
-			solve(i + 1);
+		if (position + 1 < chessboard.length) {
+			solve(position + 1);
 		}
 	}
 
@@ -152,25 +150,15 @@ public final class BruteForceNQueensSolverOneDimension extends GenericNQueensSol
 		return true;
 	}
 
-	/**
-	 * Main greedy program.
-	 * 
-	 * @param args options
-	 * @throws InvalidSolutionsException
-	 */
-	public static void main(final String args[]) throws InvalidSolutionsException {
+	@Override
+	public void reset() {
 
-		// Chessboard size (8 is quite long for this algorithm)
-		final int chessboardSize = 8;
+		super.reset();
 
-		// Instantiate adn run the greedy solver
-		final BruteForceNQueensSolverOneDimension genericNQueensSolver = new BruteForceNQueensSolverOneDimension(chessboardSize, true);
-		final long solutionCount = genericNQueensSolver.solve();
-
-		// End of the algorithm print the total of solution(s) found
-		System.out.println("\nTotal number of solution(s):" + solutionCount); //$NON-NLS-1$
-		// Check if the number of solutions found is correct
-		SequenceTools.checkSolutionsFound(chessboardSize, solutionCount);
+		final int chessboardArrayLength = chessboardSize * chessboardSize;
+		if (chessboard.length != chessboardArrayLength) {
+			chessboard = new boolean[chessboardArrayLength];
+		}
 	}
 
 	@Override

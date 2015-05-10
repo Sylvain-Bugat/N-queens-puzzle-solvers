@@ -50,7 +50,7 @@ public abstract class GenericNQueensSolver {
 
 	public abstract long solve();
 
-	public final void reset() {
+	public void reset() {
 
 		// Reinitialize the number of solutions found
 		solutionCount = 0;
