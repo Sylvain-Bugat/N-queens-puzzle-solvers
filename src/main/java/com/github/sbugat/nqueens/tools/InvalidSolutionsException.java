@@ -17,4 +17,8 @@ public class InvalidSolutionsException extends Exception {
 		puzzleSize = puzzleSizeArg;
 	}
 
+	@Override
+	public String toString() {
+		return solutionFound + " solutions found, expected: " + solutionExpected + " for a chessboard of size " + puzzleSize;
+	}
 }
