@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.github.sbugat.nqueens.solvers.experimental.BackTrackingNQueensSolverDivide;
+import com.github.sbugat.nqueens.solvers.bruteforce.BruteForceNQueensSolverColumnBitFlags;
 import com.github.sbugat.nqueens.tools.BenchmarkTools;
 import com.github.sbugat.nqueens.tools.InvalidSolutionsException;
 
@@ -15,7 +15,7 @@ public abstract class BenchmarkAllSolvers {
 		final List<GenericNQueensSolver> genericNQueensSolverList = new ArrayList<>();
 
 		// genericNQueensSolverList.add(new SlowBruteForceNQueensSolverWithListsNoQueensLimit(chessboardSize, true));
-		genericNQueensSolverList.add(new BackTrackingNQueensSolverDivide(chessboardSize, true));
+		genericNQueensSolverList.add(new BruteForceNQueensSolverColumnBitFlags(chessboardSize, false));
 
 		// genericNQueensSolverList.add(new BruteForceNQueensSolverFullyOptimized(chessboardSize));
 		// genericNQueensSolverList.add(new BruteForceNQueensSolverOneDimension(chessboardSize, false));
@@ -39,7 +39,7 @@ public abstract class BenchmarkAllSolvers {
 
 		// Chessboard size
 		final int chessboardSize = 8;
-		final int benchmarkRun = 1;
+		final int benchmarkRun = 50;
 
 		final List<GenericNQueensSolver> genericNQueensSolverList = getSolvers(chessboardSize);
 

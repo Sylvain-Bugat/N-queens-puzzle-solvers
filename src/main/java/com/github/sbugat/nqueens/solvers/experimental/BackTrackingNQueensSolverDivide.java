@@ -51,7 +51,7 @@ public final class BackTrackingNQueensSolverDivide extends GenericNQueensSolver 
 
 			for (final Long downSignature : down) {
 
-				if ((upSignature & downSignature) == 0) {
+				if ((upSignature.longValue() & downSignature.longValue()) == 0) {
 					// System.out.println(upSignature + " " + downSignature);
 					solutionCount++;
 				}
@@ -120,14 +120,13 @@ public final class BackTrackingNQueensSolverDivide extends GenericNQueensSolver 
 				// System.out.println(Long.toBinaryString(signatureDown));
 				// System.out.println(Long.toBinaryString(signatureUp));
 
-				up.add(signatureUp);
-				down.add(signatureDown);
+				up.add(Long.valueOf(signatureUp));
+				down.add(Long.valueOf(signatureDown));
 
 				// solutionCount++;
 				// print();
 			}
-		}
-		else {
+		} else {
 
 			// End of the chessboard check
 			if (position + 1 < chessboard.length / 2) {
