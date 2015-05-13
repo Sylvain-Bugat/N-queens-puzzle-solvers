@@ -25,6 +25,10 @@ public final class BackTrackingNQueensSolverDivide2 extends GenericNQueensSolver
 	private final List<Long> up = new ArrayList<>();
 	private final List<Long> down = new ArrayList<>();
 
+	private final int chessboardSizeMinusOne;
+	private final int chessboardSize1Point5MinusOne;
+	private final int chessboardSizeDividedBy2;
+
 	public BackTrackingNQueensSolverDivide2(final int chessboardSizeArg, final boolean printSolutionArg) {
 
 		super(chessboardSizeArg, printSolutionArg);
@@ -33,6 +37,10 @@ public final class BackTrackingNQueensSolverDivide2 extends GenericNQueensSolver
 		columnCounts = new int[chessboardSizeArg];
 		ascendingDiagonalCounts = new int[chessboardSizeArg * 2 - 1];
 		descendingDiagonalCounts = new int[chessboardSizeArg * 2 - 1];
+
+		chessboardSizeMinusOne = chessboardSizeArg - 1;
+		chessboardSize1Point5MinusOne = chessboardSize * 3 / 2 - 1;
+		chessboardSizeDividedBy2 = chessboardSize / 2;
 	}
 
 	@Override
@@ -77,21 +85,20 @@ public final class BackTrackingNQueensSolverDivide2 extends GenericNQueensSolver
 					descendingDiagonalCounts[descendingDiagnonal]++;
 
 					// Middle line
-					if (y + 1 >= chessboardSize / 2) {
-						long signatureDown = 0;
+					if (y + 1 >= chessboardSizeDividedBy2) {
 						long signatureUp = 0;
 						for (int i = 0; i < columnCounts.length; i++) {
 
-							signatureDown |= columnCounts[i] << i;
 							signatureUp |= columnCounts[i] << i;
 						}
+						long signatureDown = signatureUp;
 
 						for (int i = 0; i < ascendingDiagonalCounts.length; i++) {
 
-							if (i >= chessboardSize / 2 && i < chessboardSize * 3 / 2 - 1) {
-								signatureDown |= ascendingDiagonalCounts[i] << i - chessboardSize / 2 + chessboardSize;
+							if (i >= chessboardSizeDividedBy2 && i < chessboardSize1Point5MinusOne) {
+								signatureDown |= ascendingDiagonalCounts[i] << i - chessboardSizeDividedBy2 + chessboardSize;
 							}
-							if (i < chessboardSize - 1) {
+							if (i < chessboardSizeMinusOne) {
 								signatureUp |= ascendingDiagonalCounts[i] << i + chessboardSize;
 							}
 
@@ -102,10 +109,10 @@ public final class BackTrackingNQueensSolverDivide2 extends GenericNQueensSolver
 
 						for (int i = 0; i < descendingDiagonalCounts.length; i++) {
 
-							if (i >= chessboardSize / 2 && i < chessboardSize * 3 / 2 - 1) {
-								signatureDown |= descendingDiagonalCounts[i] << i + chessboardSize * 2 - chessboardSize / 2;
+							if (i >= chessboardSizeDividedBy2 && i < chessboardSize1Point5MinusOne) {
+								signatureDown |= descendingDiagonalCounts[i] << i + chessboardSize * 2 - chessboardSizeDividedBy2;
 							}
-							if (i >= chessboardSize) {
+							if (i > chessboardSizeMinusOne) {
 								signatureUp |= descendingDiagonalCounts[i] << i + chessboardSize;
 							}
 						}
