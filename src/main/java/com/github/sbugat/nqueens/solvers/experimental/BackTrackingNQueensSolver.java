@@ -16,27 +16,34 @@ public final class BackTrackingNQueensSolver extends GenericNQueensSolver {
 	/** Chessboard represented by a list of lists. */
 	private List<List<Integer>> chessboard;
 	/** Array to count queens on each column. */
-	private int[] columnCounts;
+	private List<Integer> columnCounts;
 	/** Array to count queens on ascending diagonals, diagonal number = x + y. */
-	private int[] ascendingDiagonalCounts;
+	private List<Integer> ascendingDiagonalCounts;
 	/** Array to count queens on descending diagonals, diagonal number = x + chess board size - 1 - y. */
-	private int[] descendingDiagonalCounts;
+	private List<Integer> descendingDiagonalCounts;
 
 	public BackTrackingNQueensSolver(final int chessboardSizeArg, final boolean printSolutionArg) {
 
 		super(chessboardSizeArg, printSolutionArg);
 
 		chessboard = new ArrayList<>();
+		columnCounts = new ArrayList<>();
 		for (int x = 0; x < chessboardSizeArg; x++) {
 			final List<Integer> lineList = new ArrayList<>();
 			for (int y = 0; y < chessboardSizeArg; y++) {
 				lineList.add(Integer.valueOf(0));
 			}
 			chessboard.add(lineList);
+			columnCounts.add(Integer.valueOf(0));
 		}
-		columnCounts = new int[chessboardSizeArg];
-		ascendingDiagonalCounts = new int[chessboardSizeArg * 2 - 1];
-		descendingDiagonalCounts = new int[chessboardSizeArg * 2 - 1];
+
+		ascendingDiagonalCounts = new ArrayList<>();
+		descendingDiagonalCounts = new ArrayList<>();
+
+		for (int i = 0; i < chessboardSizeArg * 2 - 1; i++) {
+			ascendingDiagonalCounts.add(Integer.valueOf(0));
+			descendingDiagonalCounts.add(Integer.valueOf(0));
+		}
 	}
 
 	@Override
@@ -58,15 +65,15 @@ public final class BackTrackingNQueensSolver extends GenericNQueensSolver {
 
 		for (int x = 0; x < chessboardSize; x++) {
 
-			if (columnCounts[x] == 0) {
+			if (columnCounts.get(x).intValue() == 0) {
 				final int ascendingDiagnonal = x + y;
 				final int descendingDiagnonal = x + chessboardSize - 1 - y;
-				if (ascendingDiagonalCounts[ascendingDiagnonal] == 0 && descendingDiagonalCounts[descendingDiagnonal] == 0) {
+				if (ascendingDiagonalCounts.get(ascendingDiagnonal).intValue() == 0 && descendingDiagonalCounts.get(descendingDiagnonal).intValue() == 0) {
 					// Put a queen on the current position
 					chessboard.get(x).set(y, Integer.valueOf(1));
-					columnCounts[x]++;
-					ascendingDiagonalCounts[ascendingDiagnonal]++;
-					descendingDiagonalCounts[descendingDiagnonal]++;
+					columnCounts.set(x, Integer.valueOf(columnCounts.get(x).intValue() + 1));
+					ascendingDiagonalCounts.set(ascendingDiagnonal, Integer.valueOf(ascendingDiagonalCounts.get(ascendingDiagnonal).intValue() + 1));
+					descendingDiagonalCounts.set(descendingDiagnonal, Integer.valueOf(descendingDiagonalCounts.get(descendingDiagnonal).intValue() + 1));
 
 					// Last line: all queens are sets then a solution may be present
 					if (y + 1 >= chessboardSize) {
@@ -81,9 +88,9 @@ public final class BackTrackingNQueensSolver extends GenericNQueensSolver {
 					}
 
 					// Remove the placed queen
-					ascendingDiagonalCounts[ascendingDiagnonal]--;
-					descendingDiagonalCounts[descendingDiagnonal]--;
-					columnCounts[x]--;
+					ascendingDiagonalCounts.set(ascendingDiagnonal, Integer.valueOf(ascendingDiagonalCounts.get(ascendingDiagnonal).intValue() - 1));
+					descendingDiagonalCounts.set(descendingDiagnonal, Integer.valueOf(descendingDiagonalCounts.get(descendingDiagnonal).intValue() - 1));
+					columnCounts.set(x, Integer.valueOf(columnCounts.get(x).intValue() - 1));
 					chessboard.get(x).set(y, Integer.valueOf(0));
 				}
 			}
@@ -98,17 +105,20 @@ public final class BackTrackingNQueensSolver extends GenericNQueensSolver {
 	private boolean checkSolutionChessboard() {
 
 		// Check if 2 queens are on the same line and column
-		for (int x = 0; x < columnCounts.length; x++) {
-
-			if (columnCounts[x] > 1) {
+		for (final Integer value : columnCounts) {
+			if (value.intValue() > 1) {
 				return false;
 			}
 		}
 
 		// Check if 2 queens are on the same column
-		for (int i = 0; i < ascendingDiagonalCounts.length; i++) {
-
-			if (ascendingDiagonalCounts[i] > 1 || descendingDiagonalCounts[i] > 1) {
+		for (final Integer value : ascendingDiagonalCounts) {
+			if (value.intValue() > 1) {
+				return false;
+			}
+		}
+		for (final Integer value : descendingDiagonalCounts) {
+			if (value.intValue() > 1) {
 				return false;
 			}
 		}
@@ -123,16 +133,23 @@ public final class BackTrackingNQueensSolver extends GenericNQueensSolver {
 
 		if (chessboard.size() != chessboardSize) {
 			chessboard = new ArrayList<>();
+			columnCounts = new ArrayList<>();
 			for (int x = 0; x < chessboardSize; x++) {
 				final List<Integer> lineList = new ArrayList<>();
 				for (int y = 0; y < chessboardSize; y++) {
 					lineList.add(Integer.valueOf(0));
 				}
 				chessboard.add(lineList);
+				columnCounts.add(Integer.valueOf(0));
 			}
-			columnCounts = new int[chessboardSize];
-			ascendingDiagonalCounts = new int[chessboardSize * 2 - 1];
-			descendingDiagonalCounts = new int[chessboardSize * 2 - 1];
+
+			ascendingDiagonalCounts = new ArrayList<>();
+			descendingDiagonalCounts = new ArrayList<>();
+
+			for (int i = 0; i < chessboardSize * 2 - 1; i++) {
+				ascendingDiagonalCounts.add(Integer.valueOf(0));
+				descendingDiagonalCounts.add(Integer.valueOf(0));
+			}
 		}
 	}
 
