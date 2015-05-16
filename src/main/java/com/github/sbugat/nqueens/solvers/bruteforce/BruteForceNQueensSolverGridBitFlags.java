@@ -96,10 +96,10 @@ public final class BruteForceNQueensSolverGridBitFlags extends GenericNQueensSol
 		int countDescendingDiagonals = 0;
 		for (int i = 0; i < chessboardSize * 2 - 1; i++) {
 
-			if ((ascendingDiagonalFlags & 1 << i) == 0) {
+			if ((ascendingDiagonalFlags & 1 << i) != 0) {
 				countAscendingDiagonals++;
 			}
-			if ((descendingDiagonalFlags & 1 << i) == 0) {
+			if ((descendingDiagonalFlags & 1 << i) != 0) {
 				countDescendingDiagonals++;
 			}
 		}
