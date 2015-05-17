@@ -23,6 +23,11 @@ public final class BruteForceNQueensSolverGridBitFlags extends GenericNQueensSol
 
 		super(chessboardSizeArg, printSolutionArg);
 
+		// Check chessboard size constraint
+		if (chessboardSizeArg > Integer.SIZE && chessboardSizeArg * 2 - 1 > Long.SIZE) {
+			throw new IllegalArgumentException("Invalid chessboard size: " + chessboardSizeArg + " upper limits are (int size):" + Integer.SIZE + " and (long size):" + Long.SIZE);
+		}
+
 		chessboard = new int[chessboardSizeArg];
 	}
 

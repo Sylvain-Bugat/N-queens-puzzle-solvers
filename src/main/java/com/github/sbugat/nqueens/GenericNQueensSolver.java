@@ -12,6 +12,12 @@ public abstract class GenericNQueensSolver {
 	protected final boolean printSolution;
 
 	protected GenericNQueensSolver(final int chessboardSizeArg, final boolean printSolutionArg) {
+
+		// Check positive chessboard size
+		if (chessboardSizeArg <= 0) {
+			throw new IllegalArgumentException("The chessboard size must be positive: " + chessboardSizeArg);
+		}
+
 		chessboardSize = chessboardSizeArg;
 		printSolution = printSolutionArg;
 	}

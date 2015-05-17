@@ -23,6 +23,11 @@ public final class BruteForceNQueensSolverColumnBitFlags extends GenericNQueensS
 
 		super(chessboardSizeArg, printSolutionArg);
 
+		// Check chessboard size constraint
+		if (chessboardSizeArg > Integer.SIZE) {
+			throw new IllegalArgumentException("Invalid chessboard size: " + chessboardSizeArg + " upper limit is (int size):" + Integer.SIZE);
+		}
+
 		chessboard = new boolean[chessboardSizeArg][chessboardSizeArg];
 		ascendingDiagonalCounts = new int[chessboardSizeArg * 2 - 1];
 		descendingDiagonalCounts = new int[chessboardSizeArg * 2 - 1];
