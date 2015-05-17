@@ -30,6 +30,23 @@ public abstract class GenericNQueensSolverTest {
 			// Solve with the chessboard size and compare the number of solutions with the expected sequence
 			final long solutionCount = genericNQueensSolver.solve();
 			Assertions.assertThat(solutionCount).isEqualTo(SequenceTools.getExpectedSolutions(genericNQueensSolver.getChessboardSize()));
+
+			// Test if the chessboard is cleared
+			testClearedChessboard();
+		}
+	}
+
+	/**
+	 * Method to test if the chessboard is fully cleared.
+	 */
+	public void testClearedChessboard() {
+
+		for (int x = 0; x < genericNQueensSolver.getChessboardSize(); x++) {
+
+			for (int y = 0; y < genericNQueensSolver.getChessboardSize(); y++) {
+
+				Assertions.assertThat(genericNQueensSolver.getChessboardPosition(x, y)).isFalse();
+			}
 		}
 	}
 }
