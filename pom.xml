@@ -48,6 +48,8 @@
 		<maven.pluginassembly.version>2.5.4</maven.pluginassembly.version>
 		<maven.pluginshade.version>2.3</maven.pluginshade.version>
 		<maven.pluginexecutablejar.version>1.4.1</maven.pluginexecutablejar.version>
+		<maven.plugincoveralls.version>3.1.0</maven.plugincoveralls.version>
+		<maven.pluginjacoco.version>0.7.4.201502262128</maven.pluginjacoco.version>
 		<maven.pluginantrun.version>1.8</maven.pluginantrun.version>
 		<maven.plugindependency.version>2.10</maven.plugindependency.version>
 		<maven.pluginrelease.version>2.5.2</maven.pluginrelease.version>
@@ -228,6 +230,28 @@
 				<configuration>
 					<rulesUri>file:./dependencies-check-rules.xml</rulesUri>
 				</configuration>
+			</plugin>
+
+			<!-- Tests coverage plugin configuration -->
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>${maven.pluginjacoco.version}</version>
+				<executions>
+					<execution>
+						<id>prepare-agent</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- Tests coverage report with coveralls.io plugin configuration -->
+			<plugin>
+				<groupId>org.eluder.coveralls</groupId>
+				<artifactId>coveralls-maven-plugin</artifactId>
+				<version>${maven.plugincoveralls.version}</version>
 			</plugin>
 		</plugins>
 		<pluginManagement>
