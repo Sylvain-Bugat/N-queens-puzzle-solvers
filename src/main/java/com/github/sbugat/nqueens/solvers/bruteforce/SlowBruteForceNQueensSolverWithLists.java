@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.github.sbugat.nqueens.GenericNQueensSolver;
-import com.github.sbugat.nqueens.tools.InvalidSolutionsException;
-import com.github.sbugat.nqueens.tools.SequenceTools;
 
 /**
  * Slow brute-force algorithm for the N queens puzzle solver with a queen limit of N (size of the chessboard).
@@ -187,27 +185,6 @@ public final class SlowBruteForceNQueensSolverWithLists extends GenericNQueensSo
 		}
 
 		return true;
-	}
-
-	/**
-	 * Main greedy program.
-	 * 
-	 * @param args options
-	 * @throws InvalidSolutionsException
-	 */
-	public static void main(final String args[]) throws InvalidSolutionsException {
-
-		// Chessboard size (8 is already very long for this algorithm (>15 minutes))
-		final int chessboardSize = 7;
-
-		// Instantiate adn run the greedy solver
-		final SlowBruteForceNQueensSolverWithLists genericNQueensSolver = new SlowBruteForceNQueensSolverWithLists(chessboardSize, true);
-		final long solutionCount = genericNQueensSolver.solve();
-
-		// End of the algorithm print the total of solution(s) found
-		System.out.println("\nTotal number of solution(s):" + solutionCount); //$NON-NLS-1$
-		// Check if the number of solutions found is correct
-		SequenceTools.checkSolutionsFound(chessboardSize, solutionCount);
 	}
 
 	@Override

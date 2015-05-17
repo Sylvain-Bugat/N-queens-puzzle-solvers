@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.github.sbugat.nqueens.GenericNQueensSolver;
-import com.github.sbugat.nqueens.tools.InvalidSolutionsException;
-import com.github.sbugat.nqueens.tools.SequenceTools;
 
 /**
  * Brute-force algorithm for the N queens puzzle solver with a variable containing the queen number constraint.
@@ -62,7 +60,8 @@ public final class BruteForceNQueensSolverWithLists extends GenericNQueensSolver
 				solutionCount++;
 				print();
 			}
-		} else {
+		}
+		else {
 
 			// Recursive call to the next position
 			final int nextX = (x + 1) % chessboardSize;
@@ -73,7 +72,8 @@ public final class BruteForceNQueensSolverWithLists extends GenericNQueensSolver
 				if (y + 1 < chessboardSize) {
 					solve(nextX, y + 1);
 				}
-			} else {
+			}
+			else {
 				solve(nextX, y);
 			}
 		}
@@ -91,7 +91,8 @@ public final class BruteForceNQueensSolverWithLists extends GenericNQueensSolver
 			if (y + 1 < chessboardSize) {
 				solve(nextX, y + 1);
 			}
-		} else {
+		}
+		else {
 			solve(nextX, y);
 		}
 	}
@@ -176,27 +177,6 @@ public final class BruteForceNQueensSolverWithLists extends GenericNQueensSolver
 		}
 
 		return true;
-	}
-
-	/**
-	 * Main greedy program.
-	 * 
-	 * @param args options
-	 * @throws InvalidSolutionsException
-	 */
-	public static void main(final String args[]) throws InvalidSolutionsException {
-
-		// Chessboard size (8 is quite long for this algorithm)
-		final int chessboardSize = 8;
-
-		// Instantiate adn run the greedy solver
-		final BruteForceNQueensSolverWithLists genericNQueensSolver = new BruteForceNQueensSolverWithLists(chessboardSize, true);
-		final long solutionCount = genericNQueensSolver.solve();
-
-		// End of the algorithm print the total of solution(s) found
-		System.out.println("\nTotal number of solution(s):" + solutionCount); //$NON-NLS-1$
-		// Check if the number of solutions found is correct
-		SequenceTools.checkSolutionsFound(chessboardSize, solutionCount);
 	}
 
 	@Override
