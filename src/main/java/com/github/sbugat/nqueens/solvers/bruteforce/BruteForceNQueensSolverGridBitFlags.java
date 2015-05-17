@@ -52,7 +52,6 @@ public final class BruteForceNQueensSolverGridBitFlags extends GenericNQueensSol
 
 			// Put a queen on the current position
 			final int queenFlag = 1 << x;
-			final int saveChessboardFlags = chessboard[y];
 			chessboard[y] |= queenFlag;
 			final int saveColumnFlags = columnFlags;
 			columnFlags |= queenFlag;
@@ -77,7 +76,7 @@ public final class BruteForceNQueensSolverGridBitFlags extends GenericNQueensSol
 			ascendingDiagonalFlags = ascendingDiagonalFlagsSave;
 			descendingDiagonalFlags = descendingDiagonalFlagsSave;
 			columnFlags = saveColumnFlags;
-			chessboard[y] = saveChessboardFlags;
+			chessboard[y] ^= queenFlag;
 		}
 	}
 
