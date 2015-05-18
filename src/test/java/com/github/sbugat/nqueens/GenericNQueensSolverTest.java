@@ -40,7 +40,6 @@ public class GenericNQueensSolverTest {
 
 		// Compare standard output
 		final byte[] encoded = Files.readAllBytes(Paths.get("src/test/resources/GenericNQueensSolverTest-expected-output.txt"));
-		System.err.println(outContent.toString());
 		Assertions.assertThat(outContent.toString()).isEqualTo(new String(encoded, StandardCharsets.ISO_8859_1));
 	}
 
