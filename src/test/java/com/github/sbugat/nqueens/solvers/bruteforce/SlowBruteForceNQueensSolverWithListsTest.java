@@ -1,6 +1,6 @@
 package com.github.sbugat.nqueens.solvers.bruteforce;
 
-import com.github.sbugat.nqueens.GenericNQueensSolverTest;
+import com.github.sbugat.nqueens.GenericNQueensSolverTemplateTest;
 
 /**
  * Brute-force N queens solver test.
@@ -8,7 +8,7 @@ import com.github.sbugat.nqueens.GenericNQueensSolverTest;
  * @author Sylvain Bugat
  * 
  */
-public final class SlowBruteForceNQueensSolverWithListsTest extends GenericNQueensSolverTest {
+public final class SlowBruteForceNQueensSolverWithListsTest extends GenericNQueensSolverTemplateTest {
 
 	/** Test only with a size of 6 because this algorithm is very very slow. */
 	private static final int MAXIMUM_TESTED_CHESSBOARD_SIZE = 5;

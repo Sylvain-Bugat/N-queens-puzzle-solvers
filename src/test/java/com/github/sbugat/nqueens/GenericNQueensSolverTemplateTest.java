@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import com.github.sbugat.nqueens.tools.SequenceTools;
 
-public abstract class GenericNQueensSolverTest {
+public abstract class GenericNQueensSolverTemplateTest {
 
 	/** The solver to test. */
 	private final GenericNQueensSolver genericNQueensSolver;
@@ -13,7 +13,7 @@ public abstract class GenericNQueensSolverTest {
 	/** The maximum chessboard size to test. */
 	private final int maximumChessboardSize;
 
-	protected GenericNQueensSolverTest(final GenericNQueensSolver genericNQueensSolverArg, final int maximumChessboardSizeArg) {
+	protected GenericNQueensSolverTemplateTest(final GenericNQueensSolver genericNQueensSolverArg, final int maximumChessboardSizeArg) {
 		genericNQueensSolver = genericNQueensSolverArg;
 		maximumChessboardSize = maximumChessboardSizeArg;
 	}
