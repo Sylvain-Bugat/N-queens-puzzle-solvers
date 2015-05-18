@@ -13,7 +13,7 @@ public final class SequenceTools {
 	public static void checkSolutionsFound(final int chessboardSize, final long solutionsFound) throws InvalidSolutionsException {
 
 		// Check if the chessboard size is in the correct interval
-		if (chessboardSize < 0 || chessboardSize > SOLUTION_SEQUENCE.length) {
+		if (chessboardSize <= 0 || chessboardSize >= SOLUTION_SEQUENCE.length) {
 			throw new IllegalArgumentException("Invalid chess size " + chessboardSize); //$NON-NLS-1$
 		}
 
@@ -26,7 +26,7 @@ public final class SequenceTools {
 
 	public static long getExpectedSolutions(final int chessboardSize) {
 
-		if (chessboardSize < 0 || chessboardSize > SOLUTION_SEQUENCE.length) {
+		if (chessboardSize <= 0 || chessboardSize >= SOLUTION_SEQUENCE.length) {
 			throw new IllegalArgumentException("Invalid chess size " + chessboardSize); //$NON-NLS-1$
 		}
 
