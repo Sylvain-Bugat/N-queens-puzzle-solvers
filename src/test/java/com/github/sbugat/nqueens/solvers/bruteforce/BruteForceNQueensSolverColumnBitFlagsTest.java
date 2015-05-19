@@ -23,5 +23,6 @@ public final class BruteForceNQueensSolverColumnBitFlagsTest extends GenericNQue
 	@Test(expected = IllegalArgumentException.class)
 	public void bruteForceNQueensSolverColumnBitFlagsInvalidTest() {
 
+		new BruteForceNQueensSolverColumnBitFlags(Integer.SIZE + 1, false);
 	}
 }
