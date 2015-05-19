@@ -1,5 +1,7 @@
 package com.github.sbugat.nqueens.solvers.bruteforce;
 
+import org.junit.Test;
+
 import com.github.sbugat.nqueens.GenericNQueensSolverTemplateTest;
 
 /**
@@ -16,5 +18,10 @@ public final class BruteForceNQueensSolverColumnBitFlagsTest extends GenericNQue
 	public BruteForceNQueensSolverColumnBitFlagsTest() {
 
 		super(new BruteForceNQueensSolverColumnBitFlags(MAXIMUM_TESTED_CHESSBOARD_SIZE, false), MAXIMUM_TESTED_CHESSBOARD_SIZE);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void bruteForceNQueensSolverColumnBitFlagsInvalidTest() {
+
 	}
 }
