@@ -18,6 +18,11 @@ public class InvalidSolutionsException extends Exception {
 	}
 
 	@Override
+	public String getMessage() {
+		return toString();
+	}
+
+	@Override
 	public String toString() {
 		return solutionFound + " solutions found, expected: " + solutionExpected + " for a chessboard of size " + puzzleSize;
 	}

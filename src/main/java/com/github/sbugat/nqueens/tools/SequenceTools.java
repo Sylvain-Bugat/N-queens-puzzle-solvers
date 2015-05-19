@@ -6,7 +6,7 @@ package com.github.sbugat.nqueens.tools;
  * @author Sylvain Bugat
  * 
  */
-public final class SequenceTools {
+public abstract class SequenceTools {
 
 	private static final long[] SOLUTION_SEQUENCE = { 0, 1, 0, 0, 2, 10, 4, 40, 92, 352, 724, 2680, 14200, 73712, 365596, 2279184, 14772512, 95815104, 666090624, 4968057848L, 39029188884L, 314666222712L, 2691008701644L, 24233937684440L, 227514171973736L, 2207893435808352L, 22317699616364044L };
 
