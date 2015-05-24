@@ -1,6 +1,8 @@
 package com.github.sbugat.nqueens;
 
-import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
@@ -17,11 +19,11 @@ import com.github.sbugat.nqueens.tools.SequenceTools;
 
 public class GenericNQueensSolverTest {
 
-	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+	private final File STANDARD_OUTPUT_FILE = new File("target/stdout.txt");
 
 	@Before
-	public void setUpStreams() {
-		System.setOut(new PrintStream(outContent));
+	public void setUpStreams() throws FileNotFoundException {
+		System.setOut(new PrintStream(new FileOutputStream(STANDARD_OUTPUT_FILE)));
 	}
 
 	@After
@@ -40,7 +42,7 @@ public class GenericNQueensSolverTest {
 
 		// Compare standard output
 		final byte[] encoded = Files.readAllBytes(Paths.get("src/test/resources/GenericNQueensSolverTest-expected-output.txt"));
-		Assertions.assertThat(outContent.toString()).isEqualTo(new String(encoded, StandardCharsets.ISO_8859_1));
+		Assertions.assertThat(STANDARD_OUTPUT_FILE).hasContent(new String(encoded, StandardCharsets.UTF_8));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
