@@ -12,7 +12,7 @@ import com.github.sbugat.nqueens.GenericNQueensSolverTemplateTest;
  */
 public final class BruteForceNQueensSolverGridBitFlagsTest extends GenericNQueensSolverTemplateTest {
 
-	/** Test only with a size of 6 because this algorithm is slow. */
+	/** Test only with a size of 7 because this algorithm is slow. */
 	private static final int MAXIMUM_TESTED_CHESSBOARD_SIZE = 7;
 
 	public BruteForceNQueensSolverGridBitFlagsTest() {
