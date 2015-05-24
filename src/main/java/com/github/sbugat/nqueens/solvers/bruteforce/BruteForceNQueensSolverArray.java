@@ -133,14 +133,12 @@ public final class BruteForceNQueensSolverArray extends GenericNQueensSolver {
 
 				final int x = diagonal - y;
 
-				if (x >= 0 && x < chessboardSize) {
+				if (x >= 0 && x < chessboardSize && chessboard[x][y]) {
 
-					if (chessboard[x][y]) {
-						if (usedDiagonal) {
-							return false;
-						}
-						usedDiagonal = true;
+					if (usedDiagonal) {
+						return false;
 					}
+					usedDiagonal = true;
 				}
 			}
 		}
@@ -154,14 +152,12 @@ public final class BruteForceNQueensSolverArray extends GenericNQueensSolver {
 
 				final int x = diagonal - chessboardSize + 1 + y;
 
-				if (x >= 0 && x < chessboardSize) {
+				if (x >= 0 && x < chessboardSize && chessboard[x][y]) {
 
-					if (chessboard[x][y]) {
-						if (usedDiagonal) {
-							return false;
-						}
-						usedDiagonal = true;
+					if (usedDiagonal) {
+						return false;
 					}
+					usedDiagonal = true;
 				}
 			}
 		}

@@ -21,7 +21,7 @@ public final class BruteForceNQueensSolverHalfFirstLineTest extends GenericNQuee
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void bruteForceNQueensSolverColumnBitFlagsInvalidTest() {
+	public void bruteForceNQueensSolverHalfFirstLineInvalidTest() {
 
 		new BruteForceNQueensSolverHalfFirstLine(Integer.SIZE + 1, false);
 	}

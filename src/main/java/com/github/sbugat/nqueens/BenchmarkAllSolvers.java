@@ -32,10 +32,10 @@ public abstract class BenchmarkAllSolvers {
 	/**
 	 * Main greedy program.
 	 * 
-	 * @param args options
-	 * @throws InvalidSolutionsException
+	 * @param args program options
+	 * @throws InvalidSolutionsException if an algorithm found an invalid number of solutions
 	 */
-	public static void main(final String args[]) throws InvalidSolutionsException {
+	public static void main(final String[] args) throws InvalidSolutionsException {
 
 		// Chessboard size
 		final int chessboardSize = 8;

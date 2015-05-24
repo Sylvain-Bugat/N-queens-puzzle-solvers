@@ -121,7 +121,8 @@ public final class BackTrackingNQueensSolverDivide2 extends GenericNQueensSolver
 
 						up.add(Long.valueOf(signatureUp));
 						down.add(Long.valueOf(signatureDown));
-					} else {
+					}
+					else {
 						// Go to the next line
 						solve(y + 1);
 					}

@@ -143,14 +143,12 @@ public final class BruteForceNQueensSolverWithLists extends GenericNQueensSolver
 
 				final int x = diagonal - y;
 
-				if (x >= 0 && x < chessboardSize) {
+				if (x >= 0 && x < chessboardSize && chessboard.get(x).get(y).booleanValue()) {
 
-					if (chessboard.get(x).get(y).booleanValue()) {
-						if (usedDiagonal) {
-							return false;
-						}
-						usedDiagonal = true;
+					if (usedDiagonal) {
+						return false;
 					}
+					usedDiagonal = true;
 				}
 			}
 		}
@@ -164,14 +162,12 @@ public final class BruteForceNQueensSolverWithLists extends GenericNQueensSolver
 
 				final int x = diagonal - chessboardSize + 1 + y;
 
-				if (x >= 0 && x < chessboardSize) {
+				if (x >= 0 && x < chessboardSize && chessboard.get(x).get(y).booleanValue()) {
 
-					if (chessboard.get(x).get(y).booleanValue()) {
-						if (usedDiagonal) {
-							return false;
-						}
-						usedDiagonal = true;
+					if (usedDiagonal) {
+						return false;
 					}
+					usedDiagonal = true;
 				}
 			}
 		}

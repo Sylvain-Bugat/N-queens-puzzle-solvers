@@ -126,7 +126,8 @@ public final class BackTrackingNQueensSolverDivide extends GenericNQueensSolver 
 				// solutionCount++;
 				// print();
 			}
-		} else {
+		}
+		else {
 
 			// End of the chessboard check
 			if (position + 1 < chessboard.length / 2) {

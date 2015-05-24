@@ -57,7 +57,8 @@ public final class SlowBruteForceNQueensSolverWithListsNoQueensLimit extends Gen
 		if (checkSolutionChessboard()) {
 			solutionCount++;
 			print();
-		} else {
+		}
+		else {
 
 			// Recursive call to the next position
 			final int nextX = (x + 1) % chessboardSize;
@@ -68,7 +69,8 @@ public final class SlowBruteForceNQueensSolverWithListsNoQueensLimit extends Gen
 				if (y + 1 < chessboardSize) {
 					solve(nextX, y + 1);
 				}
-			} else {
+			}
+			else {
 				solve(nextX, y);
 			}
 		}
@@ -85,7 +87,8 @@ public final class SlowBruteForceNQueensSolverWithListsNoQueensLimit extends Gen
 			if (y + 1 < chessboardSize) {
 				solve(nextX, y + 1);
 			}
-		} else {
+		}
+		else {
 			solve(nextX, y);
 		}
 	}
@@ -149,13 +152,11 @@ public final class SlowBruteForceNQueensSolverWithListsNoQueensLimit extends Gen
 			boolean usedDiagonal = false;
 			for (int y = 0; y < chessboardSize; y++) {
 				final int x = diagonal - y;
-				if (x >= 0 && x < chessboardSize) {
-					if (chessboard.get(x).get(y).booleanValue()) {
-						if (usedDiagonal) {
-							return false;
-						}
-						usedDiagonal = true;
+				if (x >= 0 && x < chessboardSize && chessboard.get(x).get(y).booleanValue()) {
+					if (usedDiagonal) {
+						return false;
 					}
+					usedDiagonal = true;
 				}
 			}
 		}
@@ -165,13 +166,11 @@ public final class SlowBruteForceNQueensSolverWithListsNoQueensLimit extends Gen
 			boolean usedDiagonal = false;
 			for (int y = 0; y < chessboardSize; y++) {
 				final int x = diagonal - chessboardSize + 1 + y;
-				if (x >= 0 && x < chessboardSize) {
-					if (chessboard.get(x).get(y).booleanValue()) {
-						if (usedDiagonal) {
-							return false;
-						}
-						usedDiagonal = true;
+				if (x >= 0 && x < chessboardSize && chessboard.get(x).get(y).booleanValue()) {
+					if (usedDiagonal) {
+						return false;
 					}
+					usedDiagonal = true;
 				}
 			}
 		}

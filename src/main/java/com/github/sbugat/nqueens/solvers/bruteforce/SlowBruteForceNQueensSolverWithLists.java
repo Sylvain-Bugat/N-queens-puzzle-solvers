@@ -157,13 +157,11 @@ public final class SlowBruteForceNQueensSolverWithLists extends GenericNQueensSo
 			boolean usedDiagonal = false;
 			for (int y = 0; y < chessboardSize; y++) {
 				final int x = diagonal - y;
-				if (x >= 0 && x < chessboardSize) {
-					if (chessboard.get(x).get(y).booleanValue()) {
-						if (usedDiagonal) {
-							return false;
-						}
-						usedDiagonal = true;
+				if (x >= 0 && x < chessboardSize && chessboard.get(x).get(y).booleanValue()) {
+					if (usedDiagonal) {
+						return false;
 					}
+					usedDiagonal = true;
 				}
 			}
 		}
@@ -173,13 +171,11 @@ public final class SlowBruteForceNQueensSolverWithLists extends GenericNQueensSo
 			boolean usedDiagonal = false;
 			for (int y = 0; y < chessboardSize; y++) {
 				final int x = diagonal - chessboardSize + 1 + y;
-				if (x >= 0 && x < chessboardSize) {
-					if (chessboard.get(x).get(y).booleanValue()) {
-						if (usedDiagonal) {
-							return false;
-						}
-						usedDiagonal = true;
+				if (x >= 0 && x < chessboardSize && chessboard.get(x).get(y).booleanValue()) {
+					if (usedDiagonal) {
+						return false;
 					}
+					usedDiagonal = true;
 				}
 			}
 		}

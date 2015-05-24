@@ -115,14 +115,12 @@ public final class SlowBackTrackingNQueensSolver extends GenericNQueensSolver {
 
 				final int x = diagonal - y;
 
-				if (x >= 0 && x < chessboardSize) {
+				if (x >= 0 && x < chessboardSize && 1 == chessboard.get(x).get(y).intValue()) {
 
-					if (1 == chessboard.get(x).get(y).intValue()) {
-						if (usedDiagonal) {
-							return false;
-						}
-						usedDiagonal = true;
+					if (usedDiagonal) {
+						return false;
 					}
+					usedDiagonal = true;
 				}
 			}
 		}
@@ -136,14 +134,12 @@ public final class SlowBackTrackingNQueensSolver extends GenericNQueensSolver {
 
 				final int x = diagonal - chessboardSize + 1 + y;
 
-				if (x >= 0 && x < chessboardSize) {
+				if (x >= 0 && x < chessboardSize && 1 == chessboard.get(x).get(y).intValue()) {
 
-					if (1 == chessboard.get(x).get(y).intValue()) {
-						if (usedDiagonal) {
-							return false;
-						}
-						usedDiagonal = true;
+					if (usedDiagonal) {
+						return false;
 					}
+					usedDiagonal = true;
 				}
 			}
 		}
