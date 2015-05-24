@@ -1,6 +1,6 @@
 package com.github.sbugat.nqueens.tools;
 
-public class InvalidSolutionsException extends Exception {
+public final class InvalidSolutionsException extends Exception {
 
 	private static final long serialVersionUID = -2918035232656432720L;
 
