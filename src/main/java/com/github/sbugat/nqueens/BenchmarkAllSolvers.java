@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.github.sbugat.nqueens.solvers.bruteforce.BruteForceNQueensSolverHalfFirstLine;
+import com.github.sbugat.nqueens.solvers.bruteforce.instrumentations.SlowBruteForceNQueensSolverWithListsNoQueensLimit;
 import com.github.sbugat.nqueens.tools.BenchmarkTools;
 import com.github.sbugat.nqueens.tools.InvalidSolutionsException;
 
@@ -15,7 +15,7 @@ public abstract class BenchmarkAllSolvers {
 		final List<GenericNQueensSolver> genericNQueensSolverList = new ArrayList<>();
 
 		// genericNQueensSolverList.add(new SlowBruteForceNQueensSolverWithListsNoQueensLimit(chessboardSize, true));
-		genericNQueensSolverList.add(new BruteForceNQueensSolverHalfFirstLine(chessboardSize, false));
+		genericNQueensSolverList.add(new SlowBruteForceNQueensSolverWithListsNoQueensLimit(chessboardSize, false));
 
 		// genericNQueensSolverList.add(new BruteForceNQueensSolverFullyOptimized(chessboardSize));
 		// genericNQueensSolverList.add(new BruteForceNQueensSolverOneDimension(chessboardSize, false));
@@ -38,8 +38,8 @@ public abstract class BenchmarkAllSolvers {
 	public static void main(final String[] args) throws InvalidSolutionsException {
 
 		// Chessboard size
-		final int chessboardSize = 8;
-		final int benchmarkRun = 50;
+		final int chessboardSize = 5;
+		final int benchmarkRun = 1;
 
 		final List<GenericNQueensSolver> genericNQueensSolverList = getSolvers(chessboardSize);
 
@@ -52,6 +52,7 @@ public abstract class BenchmarkAllSolvers {
 			System.out.println("\nDone! - " + BenchmarkTools.nanoSecondsToString(solverBenchmark)); //$NON-NLS-1$
 
 			System.out.println("End: " + new Date()); //$NON-NLS-1$
+			System.out.println(genericNQueensSolver);
 		}
 	}
 }
