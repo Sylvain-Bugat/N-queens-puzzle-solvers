@@ -5,6 +5,9 @@ public abstract class GenericInstrumentedNQueensSolver extends GenericNQueensSol
 	/** Number of queens placement counter. */
 	protected long queenPlacementCount;
 
+	/** Number of tests done counter. */
+	protected long testsCount;
+
 	protected GenericInstrumentedNQueensSolver(final int chessboardSizeArg, final boolean printSolutionArg) {
 
 		super(chessboardSizeArg, printSolutionArg);
@@ -25,6 +28,9 @@ public abstract class GenericInstrumentedNQueensSolver extends GenericNQueensSol
 		final StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("queen placement count:");
 		stringBuilder.append(queenPlacementCount);
+		stringBuilder.append(System.lineSeparator());
+		stringBuilder.append("tests count:");
+		stringBuilder.append(testsCount);
 
 		return stringBuilder.toString();
 	}

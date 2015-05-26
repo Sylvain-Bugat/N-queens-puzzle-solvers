@@ -53,7 +53,9 @@ public final class SlowBruteForceNQueensSolverWithLists extends GenericInstrumen
 		queenPlacementCount++;
 
 		// All queens are sets on the chessboard then a solution may be present
+		testsCount++;
 		if (getPlacedQueens() >= chessboardSize) {
+			testsCount++;
 			if (checkSolutionChessboard()) {
 				solutionCount++;
 				print();
@@ -64,9 +66,11 @@ public final class SlowBruteForceNQueensSolverWithLists extends GenericInstrumen
 			// Recursive call to the next position
 			final int nextX = (x + 1) % chessboardSize;
 			// Switch to the next line
+			testsCount++;
 			if (0 == nextX) {
 
 				// End of the chessboard check
+				testsCount++;
 				if (y + 1 < chessboardSize) {
 					solve(nextX, y + 1);
 				}
@@ -82,9 +86,11 @@ public final class SlowBruteForceNQueensSolverWithLists extends GenericInstrumen
 		// Recursive call to the next position
 		final int nextX = (x + 1) % chessboardSize;
 		// Switch to the next line
+		testsCount++;
 		if (0 == nextX) {
 
 			// End of the chessboard check
+			testsCount++;
 			if (y + 1 < chessboardSize) {
 				solve(nextX, y + 1);
 			}
@@ -108,6 +114,7 @@ public final class SlowBruteForceNQueensSolverWithLists extends GenericInstrumen
 
 			for (int y = 0; y < chessboardSize; y++) {
 
+				testsCount++;
 				if (chessboard.get(x).get(y).booleanValue()) {
 					placedQueens++;
 				}
@@ -129,6 +136,7 @@ public final class SlowBruteForceNQueensSolverWithLists extends GenericInstrumen
 			boolean usedLine = false;
 			for (int x = 0; x < chessboardSize; x++) {
 
+				testsCount++;
 				if (chessboard.get(x).get(y).booleanValue()) {
 					if (usedLine) {
 						return false;
@@ -144,6 +152,7 @@ public final class SlowBruteForceNQueensSolverWithLists extends GenericInstrumen
 			boolean usedColumn = false;
 			for (int y = 0; y < chessboardSize; y++) {
 
+				testsCount++;
 				if (chessboard.get(x).get(y).booleanValue()) {
 					if (usedColumn) {
 						return false;
@@ -158,6 +167,7 @@ public final class SlowBruteForceNQueensSolverWithLists extends GenericInstrumen
 			boolean usedDiagonal = false;
 			for (int y = 0; y < chessboardSize; y++) {
 				final int x = diagonal - y;
+				testsCount++;
 				if (x >= 0 && x < chessboardSize && chessboard.get(x).get(y).booleanValue()) {
 					if (usedDiagonal) {
 						return false;
@@ -172,6 +182,7 @@ public final class SlowBruteForceNQueensSolverWithLists extends GenericInstrumen
 			boolean usedDiagonal = false;
 			for (int y = 0; y < chessboardSize; y++) {
 				final int x = diagonal - chessboardSize + 1 + y;
+				testsCount++;
 				if (x >= 0 && x < chessboardSize && chessboard.get(x).get(y).booleanValue()) {
 					if (usedDiagonal) {
 						return false;
