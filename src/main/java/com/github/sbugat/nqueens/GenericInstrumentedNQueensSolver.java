@@ -51,7 +51,7 @@ public abstract class GenericInstrumentedNQueensSolver extends GenericNQueensSol
 		stringBuilder.append(squareReadsCount);
 
 		stringBuilder.append(System.lineSeparator());
-		stringBuilder.append("qquare writes count:");
+		stringBuilder.append("square writes count:");
 		stringBuilder.append(squareWritesCount);
 
 		stringBuilder.append(System.lineSeparator());
