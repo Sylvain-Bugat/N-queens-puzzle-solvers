@@ -2,11 +2,23 @@ package com.github.sbugat.nqueens;
 
 public abstract class GenericInstrumentedNQueensSolver extends GenericNQueensSolver {
 
-	/** Number of queens placement counter. */
-	protected long queenPlacementCount;
+	/** Number of queen placements counter. */
+	protected long queenPlacementsCount;
+
+	/** Number of square reads counter. */
+	protected long squareReadsCount;
 
 	/** Number of tests done counter. */
-	protected long testsCount;
+	protected long squareWritesCount;
+
+	/** Number of explicittests done counter. */
+	protected long explicitTestsCount;
+
+	/** Number of implicit tests done counter (loop). */
+	protected long implicitTestsCount;
+
+	/** Number of methods calls counter. */
+	protected long methodCallsCount;
 
 	protected GenericInstrumentedNQueensSolver(final int chessboardSizeArg, final boolean printSolutionArg) {
 
@@ -19,18 +31,44 @@ public abstract class GenericInstrumentedNQueensSolver extends GenericNQueensSol
 		super.reset();
 
 		// Reinitialize generic instrumentations
-		queenPlacementCount = 0;
+		queenPlacementsCount = 0;
+		squareReadsCount = 0;
+		squareWritesCount = 0;
+		explicitTestsCount = 0;
+		implicitTestsCount = 0;
+		methodCallsCount = 0;
 	}
 
 	@Override
 	public String toString() {
 
 		final StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append("queen placement count:");
-		stringBuilder.append(queenPlacementCount);
+		stringBuilder.append("queen placements count:");
+		stringBuilder.append(queenPlacementsCount);
+
 		stringBuilder.append(System.lineSeparator());
-		stringBuilder.append("tests count:");
-		stringBuilder.append(testsCount);
+		stringBuilder.append("square reads count:");
+		stringBuilder.append(squareReadsCount);
+
+		stringBuilder.append(System.lineSeparator());
+		stringBuilder.append("qquare writes count:");
+		stringBuilder.append(squareWritesCount);
+
+		stringBuilder.append(System.lineSeparator());
+		stringBuilder.append(System.lineSeparator());
+		stringBuilder.append("explicit tests count:");
+		stringBuilder.append(explicitTestsCount);
+		stringBuilder.append(System.lineSeparator());
+		stringBuilder.append("implicit tests count:");
+		stringBuilder.append(implicitTestsCount);
+		stringBuilder.append(System.lineSeparator());
+		stringBuilder.append("total tests count:");
+		stringBuilder.append(explicitTestsCount + implicitTestsCount);
+
+		stringBuilder.append(System.lineSeparator());
+		stringBuilder.append(System.lineSeparator());
+		stringBuilder.append("method calls count:");
+		stringBuilder.append(methodCallsCount);
 
 		return stringBuilder.toString();
 	}
