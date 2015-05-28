@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.github.sbugat.nqueens.solvers.backtracking.BackTrackingNQueensSolverRevertedArray;
+import com.github.sbugat.nqueens.solvers.backtracking.BackTrackingNQueensSolverGridConstraints;
 import com.github.sbugat.nqueens.tools.BenchmarkTools;
 import com.github.sbugat.nqueens.tools.InvalidSolutionsException;
 
@@ -15,7 +15,7 @@ public abstract class BenchmarkAllSolvers {
 		final List<GenericNQueensSolver> genericNQueensSolverList = new ArrayList<>();
 
 		// genericNQueensSolverList.add(new SlowBruteForceNQueensSolverWithListsNoQueensLimit(chessboardSize, true));
-		genericNQueensSolverList.add(new BackTrackingNQueensSolverRevertedArray(chessboardSize, false));
+		genericNQueensSolverList.add(new BackTrackingNQueensSolverGridConstraints(chessboardSize, false));
 
 		// genericNQueensSolverList.add(new BruteForceNQueensSolverFullyOptimized(chessboardSize));
 		// genericNQueensSolverList.add(new BruteForceNQueensSolverOneDimension(chessboardSize, false));
