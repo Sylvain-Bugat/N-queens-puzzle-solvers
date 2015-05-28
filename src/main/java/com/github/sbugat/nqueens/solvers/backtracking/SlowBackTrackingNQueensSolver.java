@@ -6,7 +6,7 @@ import java.util.List;
 import com.github.sbugat.nqueens.GenericNQueensSolver;
 
 /**
- * Brute-force algorithm for the N queens puzzle solver.
+ * Back-tracking algorithm for the N queens puzzle solver.
  * 
  * @author Sylvain Bugat
  * 
@@ -41,7 +41,7 @@ public final class SlowBackTrackingNQueensSolver extends GenericNQueensSolver {
 	}
 
 	/**
-	 * Solving recursive method, do a brute-force algorithm by testing all combinations.
+	 * Solving recursive method, do a back-tracking algorithm by testing all valid combinations.
 	 * 
 	 * @param y line position on the chessboard
 	 */
