@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.github.sbugat.nqueens.solvers.backtracking.instrumentations.SlowBackTrackingNQueensSolver;
+import com.github.sbugat.nqueens.solvers.backtracking.SlowBackTrackingNQueensSolver;
 import com.github.sbugat.nqueens.tools.BenchmarkTools;
 import com.github.sbugat.nqueens.tools.InvalidSolutionsException;
 
@@ -38,8 +38,8 @@ public abstract class BenchmarkAllSolvers {
 	public static void main(final String[] args) throws InvalidSolutionsException {
 
 		// Chessboard size
-		final int chessboardSize = 5;
-		final int benchmarkRun = 1;
+		final int chessboardSize = 11;
+		final int benchmarkRun = 5;
 
 		final List<GenericNQueensSolver> genericNQueensSolverList = getSolvers(chessboardSize);
 
