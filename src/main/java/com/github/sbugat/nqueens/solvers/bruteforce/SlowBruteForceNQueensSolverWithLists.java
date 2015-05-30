@@ -51,7 +51,7 @@ public final class SlowBruteForceNQueensSolverWithLists extends GenericNQueensSo
 		// Put a queen on the current position
 		chessboard.get(x).set(y, Boolean.TRUE);
 
-		// All queens are sets on the chessboard then a solution may be present
+		// All queens are sets then a solution may be present
 		if (getPlacedQueens() >= chessboardSize) {
 			if (checkSolutionChessboard()) {
 				solutionCount++;

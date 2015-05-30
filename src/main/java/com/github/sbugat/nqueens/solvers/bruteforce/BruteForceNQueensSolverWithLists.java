@@ -54,7 +54,7 @@ public final class BruteForceNQueensSolverWithLists extends GenericNQueensSolver
 		chessboard.get(x).set(y, Boolean.TRUE);
 		placedQueens++;
 
-		// All queens are sets on the chessboard then a solution may be present
+		// All queens are sets then a solution may be present
 		if (placedQueens >= chessboardSize) {
 			if (checkSolutionChessboard()) {
 				solutionCount++;
