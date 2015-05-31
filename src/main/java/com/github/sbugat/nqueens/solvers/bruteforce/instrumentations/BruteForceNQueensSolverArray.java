@@ -224,4 +224,9 @@ public final class BruteForceNQueensSolverArray extends GenericInstrumentedNQuee
 	public boolean getChessboardPosition(final int x, final int y) {
 		return chessboard[x][y];
 	}
+
+	@Override
+	public String getName() {
+		return "Array brute-force";
+	}
 }

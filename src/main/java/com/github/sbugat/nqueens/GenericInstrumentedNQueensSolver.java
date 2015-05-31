@@ -84,4 +84,6 @@ public abstract class GenericInstrumentedNQueensSolver extends GenericNQueensSol
 
 		return stringBuilder.toString();
 	}
+
+	public abstract String getName();
 }

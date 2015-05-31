@@ -268,4 +268,9 @@ public final class SlowBruteForceNQueensSolverWithLists extends GenericInstrumen
 	public boolean getChessboardPosition(final int x, final int y) {
 		return chessboard.get(x).get(y).booleanValue();
 	}
+
+	@Override
+	public String getName() {
+		return "Queen constraint brute-force";
+	}
 }

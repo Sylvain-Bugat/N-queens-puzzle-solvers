@@ -227,4 +227,9 @@ public final class SlowBackTrackingNQueensSolver extends GenericInstrumentedNQue
 	public boolean getChessboardPosition(final int x, final int y) {
 		return 1 == chessboard.get(x).get(y).intValue();
 	}
+
+	@Override
+	public String getName() {
+		return "List back-tracking";
+	}
 }
