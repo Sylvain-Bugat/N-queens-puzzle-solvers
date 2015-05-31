@@ -72,4 +72,16 @@ public abstract class GenericInstrumentedNQueensSolver extends GenericNQueensSol
 
 		return stringBuilder.toString();
 	}
+
+	public final String toJavaScriptData(final String dataPrefix) {
+
+		final StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append(" \"" + dataPrefix + "queenPlacements\": " + queenPlacementsCount + ", ");
+		stringBuilder.append(" \"" + dataPrefix + "methodCalls\": " + methodCallsCount + ", ");
+		stringBuilder.append(" \"" + dataPrefix + "squareReads\": " + squareReadsCount + ", ");
+		stringBuilder.append(" \"" + dataPrefix + "explicitTests\": " + explicitTestsCount + ", ");
+		stringBuilder.append(" \"" + dataPrefix + "implicitTests\": " + implicitTestsCount);
+
+		return stringBuilder.toString();
+	}
 }

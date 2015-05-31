@@ -62,6 +62,9 @@
 
 		<!-- Commons library -->
 		<apache.commons.lang>3.4</apache.commons.lang>
+		
+		<!-- Google Guava -->
+		<guava.version>18.0</guava.version>
 
 		<!-- Tests -->
 		<junit.version>4.12</junit.version>
@@ -108,13 +111,21 @@
 			<version>${gnu.getopt.version}</version>
 		</dependency>
 
+		<!-- Apache commons -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>${apache.commons.lang}</version>
 		</dependency>
 
-		<!-- Test Dependencies (Junit, Mockito)  -->
+		<!-- Google Guava -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>${guava.version}</version>
+		</dependency>
+
+		<!-- Test Dependencies (Junit, Mockito) -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
