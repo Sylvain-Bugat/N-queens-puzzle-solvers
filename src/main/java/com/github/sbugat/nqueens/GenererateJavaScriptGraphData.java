@@ -59,7 +59,7 @@ public abstract class GenererateJavaScriptGraphData {
 			else {
 				stringBuilder.append("			<li>" + System.lineSeparator());
 			}
-			stringBuilder.append("				<a href=\"#" + VALUES_LIST.get(i) + "\" data-toggle=\"tab\">" + TEXT_VALUES_LIST.get(i) + "</a>" + System.lineSeparator());
+			stringBuilder.append("				<a href=\"#" + VALUES_LIST.get(i) + "Tab\" data-toggle=\"tab\">" + TEXT_VALUES_LIST.get(i) + "</a>" + System.lineSeparator());
 			stringBuilder.append("			</li>" + System.lineSeparator());
 		}
 		stringBuilder.append("		</ul>" + System.lineSeparator());
