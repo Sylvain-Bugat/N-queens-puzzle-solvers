@@ -3,8 +3,8 @@ package com.github.sbugat.nqueens;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.github.sbugat.nqueens.solvers.bruteforce.instrumentations.BruteForceNQueensSolverArray;
 import com.github.sbugat.nqueens.solvers.bruteforce.instrumentations.BruteForceNQueensSolverWithLists;
-import com.github.sbugat.nqueens.solvers.bruteforce.instrumentations.SlowBruteForceNQueensSolverWithLists;
 import com.github.sbugat.nqueens.tools.InvalidSolutionsException;
 import com.google.common.collect.Lists;
 
@@ -22,7 +22,7 @@ public abstract class GenererateJavaScriptGraphData {
 
 		// genericNQueensSolverList.add(new SlowBruteForceNQueensSolverWithListsNoQueensLimit(chessboardSize, true));
 		genericInstrumentedNQueensSolverList.add(new BruteForceNQueensSolverWithLists(chessboardSize, false));
-		genericInstrumentedNQueensSolverList.add(new SlowBruteForceNQueensSolverWithLists(chessboardSize, false));
+		genericInstrumentedNQueensSolverList.add(new BruteForceNQueensSolverArray(chessboardSize, false));
 
 		// genericNQueensSolverList.add(new BruteForceNQueensSolverFullyOptimized(chessboardSize));
 		// genericNQueensSolverList.add(new BruteForceNQueensSolverOneDimension(chessboardSize, false));
@@ -45,8 +45,8 @@ public abstract class GenererateJavaScriptGraphData {
 	public static void main(final String[] args) throws InvalidSolutionsException {
 
 		// Chessboard size
-		final int maxChessboardSize = 6;
-		final String javaScriptVariablePrefix = "prefix";
+		final int maxChessboardSize = 7;
+		final String javaScriptVariablePrefix = "prefix2";
 
 		final List<GenericInstrumentedNQueensSolver> genericInstrumentedNQueensSolverList = getSolvers(1);
 		final int solverNumber = genericInstrumentedNQueensSolverList.size();
