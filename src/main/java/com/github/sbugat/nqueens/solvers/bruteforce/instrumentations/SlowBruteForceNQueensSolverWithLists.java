@@ -271,6 +271,6 @@ public final class SlowBruteForceNQueensSolverWithLists extends GenericInstrumen
 
 	@Override
 	public String getName() {
-		return "Queen constraint brute-force";
+		return "List constraint brute-force";
 	}
 }

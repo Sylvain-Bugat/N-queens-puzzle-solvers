@@ -59,7 +59,7 @@ public abstract class GenererateJavaScriptGraphData {
 			else {
 				stringBuilder.append("			<li>" + System.lineSeparator());
 			}
-			stringBuilder.append("				<a href=\"#" + VALUES_LIST.get(i) + "Tab\" data-toggle=\"tab\">" + TEXT_VALUES_LIST.get(i) + "</a>" + System.lineSeparator());
+			stringBuilder.append("				<a href=\"#" + VALUES_LIST.get(i) + "Tab\" data-toggle=\"tab\" data-identifier=\"" + VALUES_LIST.get(i) + "Graph\">" + TEXT_VALUES_LIST.get(i) + "</a>" + System.lineSeparator());
 			stringBuilder.append("			</li>" + System.lineSeparator());
 		}
 		stringBuilder.append("		</ul>" + System.lineSeparator());
@@ -103,14 +103,13 @@ public abstract class GenererateJavaScriptGraphData {
 		stringBuilder.append("});" + System.lineSeparator() + System.lineSeparator());
 
 		// Graph data function
-		stringBuilder.append("$(function () {" + System.lineSeparator());
-		stringBuilder.append("	//Data" + System.lineSeparator());
-		stringBuilder.append("	var data = [" + System.lineSeparator());
+		stringBuilder.append("//Data" + System.lineSeparator());
+		stringBuilder.append("var data = [" + System.lineSeparator());
 
 		int solverNumber = 0;
 		for (int i = 1; i <= maxChessboardSize; i++) {
 
-			stringBuilder.append("		{\"size\": \"" + i + "\",");
+			stringBuilder.append("	{\"size\": \"" + i + "\",");
 			final List<GenericInstrumentedNQueensSolver> genericInstrumentedNQueensSolverList = getSolvers(i);
 			solverNumber = genericInstrumentedNQueensSolverList.size();
 
@@ -139,12 +138,12 @@ public abstract class GenererateJavaScriptGraphData {
 		final List<GenericInstrumentedNQueensSolver> genericInstrumentedNQueensSolverList = getSolvers(1);
 		for (final String value : VALUES_LIST) {
 
-			stringBuilder.append("	Morris.Line({" + System.lineSeparator());
-			stringBuilder.append("		element: '" + value + "'," + System.lineSeparator());
-			stringBuilder.append("		hideHover: 'auto'," + System.lineSeparator());
-			stringBuilder.append("		data: data," + System.lineSeparator());
-			stringBuilder.append("		xkey: 'size'," + System.lineSeparator());
-			stringBuilder.append("		ykeys: [");
+			stringBuilder.append("var " + value + "Graph = Morris.Line({" + System.lineSeparator());
+			stringBuilder.append("	element: '" + value + "'," + System.lineSeparator());
+			stringBuilder.append("	hideHover: 'auto'," + System.lineSeparator());
+			stringBuilder.append("	data: data," + System.lineSeparator());
+			stringBuilder.append("	xkey: 'size'," + System.lineSeparator());
+			stringBuilder.append("	ykeys: [");
 			for (int i = 1; i <= solverNumber; i++) {
 
 				if (i > 1) {
@@ -154,7 +153,7 @@ public abstract class GenererateJavaScriptGraphData {
 			}
 			stringBuilder.append("]," + System.lineSeparator());
 
-			stringBuilder.append("		labels: [");
+			stringBuilder.append("	labels: [");
 			for (int i = 0; i < genericInstrumentedNQueensSolverList.size(); i++) {
 
 				if (i > 0) {
@@ -164,13 +163,11 @@ public abstract class GenererateJavaScriptGraphData {
 			}
 			stringBuilder.append("]," + System.lineSeparator());
 
-			stringBuilder.append("		resize: true," + System.lineSeparator());
-			stringBuilder.append("		lineColors: ['#A52A2A','#72A0C1']," + System.lineSeparator());
-			stringBuilder.append("		yLabelFormat: function(y) { return y.toString(); }" + System.lineSeparator());
-			stringBuilder.append("	});" + System.lineSeparator());
+			stringBuilder.append("	resize: true," + System.lineSeparator());
+			stringBuilder.append("	lineColors: ['#A52A2A','#72A0C1']," + System.lineSeparator());
+			stringBuilder.append("	yLabelFormat: function(y) { return y.toLocaleString(); }" + System.lineSeparator());
+			stringBuilder.append("});" + System.lineSeparator());
 		}
-
-		stringBuilder.append("});" + System.lineSeparator());
 
 		stringBuilder.append(System.lineSeparator() + "</script>" + System.lineSeparator());
 

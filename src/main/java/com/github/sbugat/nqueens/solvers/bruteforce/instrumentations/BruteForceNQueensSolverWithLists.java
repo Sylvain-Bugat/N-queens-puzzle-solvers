@@ -244,6 +244,6 @@ public final class BruteForceNQueensSolverWithLists extends GenericInstrumentedN
 
 	@Override
 	public String getName() {
-		return "List brute-force";
+		return "Queen constraint brute-force";
 	}
 }
