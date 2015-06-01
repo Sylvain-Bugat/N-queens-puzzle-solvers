@@ -90,8 +90,19 @@ public abstract class GenererateJavaScriptGraphData {
 		stringBuilder.append("	</div>" + System.lineSeparator());
 		stringBuilder.append("</div>" + System.lineSeparator());
 
-		stringBuilder.append(System.lineSeparator() + "<script>" + System.lineSeparator());
+		stringBuilder.append(System.lineSeparator() + "<script>" + System.lineSeparator() + System.lineSeparator());
 
+		// Redraw graph script
+		stringBuilder.append("$('ul.nav a').on('shown.bs.tab', function (e) {" + System.lineSeparator());
+		stringBuilder.append("	var types = $(this).attr(\"data-identifier\");" + System.lineSeparator());
+		stringBuilder.append("	var typesArray = types.split(\",\");" + System.lineSeparator());
+		stringBuilder.append("	$.each(typesArray, function (key, value) {" + System.lineSeparator());
+		stringBuilder.append("		eval(value + \".redraw()\");" + System.lineSeparator());
+		stringBuilder.append("		eval(value + \".resizeHandler()\");" + System.lineSeparator());
+		stringBuilder.append("	})" + System.lineSeparator());
+		stringBuilder.append("});" + System.lineSeparator() + System.lineSeparator());
+
+		// Graph data function
 		stringBuilder.append("$(function () {" + System.lineSeparator());
 		stringBuilder.append("	//Data" + System.lineSeparator());
 		stringBuilder.append("	var data = [" + System.lineSeparator());
