@@ -76,11 +76,16 @@ public abstract class GenericInstrumentedNQueensSolver extends GenericNQueensSol
 	public final String toJavaScriptData(final String dataPrefix) {
 
 		final StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append(" \"" + dataPrefix + "queenPlacements\": " + Math.log(queenPlacementsCount) + ", ");
-		stringBuilder.append(" \"" + dataPrefix + "methodCalls\": " + Math.log(methodCallsCount) + ", ");
-		stringBuilder.append(" \"" + dataPrefix + "squareReads\": " + Math.log(squareReadsCount) + ", ");
-		stringBuilder.append(" \"" + dataPrefix + "explicitTests\": " + Math.log(explicitTestsCount) + ", ");
-		stringBuilder.append(" \"" + dataPrefix + "implicitTests\": " + Math.log(implicitTestsCount));
+		stringBuilder.append(" \"" + dataPrefix + "queenPlacements\": " + queenPlacementsCount + ", ");
+		stringBuilder.append(" \"" + dataPrefix + "methodCalls\": " + methodCallsCount + ", ");
+		stringBuilder.append(" \"" + dataPrefix + "squareReads\": " + squareReadsCount + ", ");
+		stringBuilder.append(" \"" + dataPrefix + "explicitTests\": " + explicitTestsCount + ", ");
+		stringBuilder.append(" \"" + dataPrefix + "implicitTests\": " + implicitTestsCount + ", ");
+		stringBuilder.append(" \"" + dataPrefix + "queenPlacementsLog\": " + Math.log(queenPlacementsCount) + ", ");
+		stringBuilder.append(" \"" + dataPrefix + "methodCallsLog\": " + Math.log(methodCallsCount) + ", ");
+		stringBuilder.append(" \"" + dataPrefix + "squareReadsLog\": " + Math.log(squareReadsCount) + ", ");
+		stringBuilder.append(" \"" + dataPrefix + "explicitTestsLog\": " + Math.log(explicitTestsCount) + ", ");
+		stringBuilder.append(" \"" + dataPrefix + "implicitTestsLog\": " + Math.log(implicitTestsCount));
 
 		return stringBuilder.toString();
 	}
