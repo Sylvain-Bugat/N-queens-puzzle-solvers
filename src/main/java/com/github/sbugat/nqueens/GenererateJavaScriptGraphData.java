@@ -1,7 +1,9 @@
 package com.github.sbugat.nqueens;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.github.sbugat.nqueens.solvers.bruteforce.instrumentations.BruteForceNQueensSolverArray;
 import com.github.sbugat.nqueens.solvers.bruteforce.instrumentations.BruteForceNQueensSolverWithLists;
@@ -114,6 +116,8 @@ public abstract class GenererateJavaScriptGraphData {
 		stringBuilder.append("});" + System.lineSeparator() + System.lineSeparator());
 
 		// Graph data function
+		final Map<Double, Long> logValuesAssociationMap = new HashMap<>();
+
 		stringBuilder.append("//Data" + System.lineSeparator());
 		stringBuilder.append("var " + javaScriptVariablePrefix + "data = [" + System.lineSeparator());
 
@@ -130,6 +134,8 @@ public abstract class GenererateJavaScriptGraphData {
 				}
 				stringBuilder.append(genericInstrumentedNQueensSolver.toJavaScriptData("solver" + solverId));
 
+				genericInstrumentedNQueensSolver.getLogAssocationValues(logValuesAssociationMap);
+
 				solverId++;
 			}
 
@@ -142,6 +148,21 @@ public abstract class GenererateJavaScriptGraphData {
 			}
 		}
 		stringBuilder.append("	];" + System.lineSeparator());
+
+		stringBuilder.append("//Data" + System.lineSeparator());
+		stringBuilder.append("var " + javaScriptVariablePrefix + "logData = {");
+
+		int entryId = 1;
+		for (final Map.Entry<Double, Long> entry : logValuesAssociationMap.entrySet()) {
+
+			if (entryId > 1) {
+				stringBuilder.append(", ");
+			}
+			stringBuilder.append(" \"" + entry.getKey() + "\": " + entry.getValue());
+
+			entryId++;
+		}
+		stringBuilder.append("	};" + System.lineSeparator());
 
 		for (final String value : VALUES_LIST) {
 
@@ -181,7 +202,7 @@ public abstract class GenererateJavaScriptGraphData {
 				stringBuilder.append("'" + GRAPH_COLORS.get(i) + "'");
 			}
 			stringBuilder.append("]," + System.lineSeparator());
-			stringBuilder.append("	yLabelFormat: function(y) { return y.toLocaleString(); }," + System.lineSeparator());
+			stringBuilder.append("	yLabelFormat: function(y) { if( " + javaScriptVariablePrefix + "logData[y]; ) { return " + javaScriptVariablePrefix + "logData[y] } else { return Math.exp(y).toLocaleString(); } }," + System.lineSeparator());
 			stringBuilder.append("	xLabelFormat: function(obj) { return (obj.x + 1).toLocaleString(); }," + System.lineSeparator());
 			stringBuilder.append("});" + System.lineSeparator());
 		}
