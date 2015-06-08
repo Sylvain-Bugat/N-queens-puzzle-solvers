@@ -202,7 +202,13 @@ public abstract class GenererateJavaScriptGraphData {
 				stringBuilder.append("'" + GRAPH_COLORS.get(i) + "'");
 			}
 			stringBuilder.append("]," + System.lineSeparator());
-			stringBuilder.append("	yLabelFormat: function(y) { if( " + javaScriptVariablePrefix + "logData[y]; ) { return " + javaScriptVariablePrefix + "logData[y] } else { return Math.exp(y).toLocaleString(); } }," + System.lineSeparator());
+			stringBuilder.append("	yLabelFormat: function(y) { if( " + javaScriptVariablePrefix + "logData[y] ) { return " + javaScriptVariablePrefix + "logData[y].toLocaleString(); } else { ");
+			stringBuilder.append("if( 0 == y ) { return 0; } ");
+			stringBuilder.append("var n=1;");
+			stringBuilder.append("for (var i = 0; i < y; i++) { n*=10; } ");
+			stringBuilder.append("return n.toLocaleString();");
+			stringBuilder.append("} }," + System.lineSeparator());
+
 			stringBuilder.append("	xLabelFormat: function(obj) { return (obj.x + 1).toLocaleString(); }," + System.lineSeparator());
 			stringBuilder.append("});" + System.lineSeparator());
 		}

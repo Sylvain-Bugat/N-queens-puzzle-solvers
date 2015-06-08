@@ -78,22 +78,22 @@ public abstract class GenericInstrumentedNQueensSolver extends GenericNQueensSol
 	public final String toJavaScriptData(final String dataPrefix) {
 
 		final StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append(" \"" + dataPrefix + "queenPlacements\": " + Math.log(queenPlacementsCount) + ", ");
-		stringBuilder.append(" \"" + dataPrefix + "methodCalls\": " + Math.log(methodCallsCount) + ", ");
-		stringBuilder.append(" \"" + dataPrefix + "squareReads\": " + Math.log(squareReadsCount) + ", ");
-		stringBuilder.append(" \"" + dataPrefix + "explicitTests\": " + Math.log(explicitTestsCount) + ", ");
-		stringBuilder.append(" \"" + dataPrefix + "implicitTests\": " + Math.log(implicitTestsCount));
+		stringBuilder.append(" \"" + dataPrefix + "queenPlacements\": " + Math.log10(queenPlacementsCount) + ", ");
+		stringBuilder.append(" \"" + dataPrefix + "methodCalls\": " + Math.log10(methodCallsCount) + ", ");
+		stringBuilder.append(" \"" + dataPrefix + "squareReads\": " + Math.log10(squareReadsCount) + ", ");
+		stringBuilder.append(" \"" + dataPrefix + "explicitTests\": " + Math.log10(explicitTestsCount) + ", ");
+		stringBuilder.append(" \"" + dataPrefix + "implicitTests\": " + Math.log10(implicitTestsCount));
 
 		return stringBuilder.toString();
 	}
 
 	public final void getLogAssocationValues(final Map<Double, Long> map) {
 
-		map.put(Math.log(Double.valueOf(queenPlacementsCount)), Long.valueOf(queenPlacementsCount));
-		map.put(Math.log(Double.valueOf(methodCallsCount)), Long.valueOf(methodCallsCount));
-		map.put(Math.log(Double.valueOf(squareReadsCount)), Long.valueOf(squareReadsCount));
-		map.put(Math.log(Double.valueOf(explicitTestsCount)), Long.valueOf(explicitTestsCount));
-		map.put(Math.log(Double.valueOf(implicitTestsCount)), Long.valueOf(implicitTestsCount));
+		map.put(Math.log10(Double.valueOf(queenPlacementsCount)), Long.valueOf(queenPlacementsCount));
+		map.put(Math.log10(Double.valueOf(methodCallsCount)), Long.valueOf(methodCallsCount));
+		map.put(Math.log10(Double.valueOf(squareReadsCount)), Long.valueOf(squareReadsCount));
+		map.put(Math.log10(Double.valueOf(explicitTestsCount)), Long.valueOf(explicitTestsCount));
+		map.put(Math.log10(Double.valueOf(implicitTestsCount)), Long.valueOf(implicitTestsCount));
 	}
 
 	public abstract String getName();
