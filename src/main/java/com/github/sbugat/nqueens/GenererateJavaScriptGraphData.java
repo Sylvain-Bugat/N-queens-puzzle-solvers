@@ -5,8 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.github.sbugat.nqueens.solvers.bruteforce.instrumentations.BruteForceNQueensSolverArray;
 import com.github.sbugat.nqueens.solvers.bruteforce.instrumentations.BruteForceNQueensSolverWithLists;
+import com.github.sbugat.nqueens.solvers.bruteforce.instrumentations.SlowBruteForceNQueensSolverWithLists;
 import com.github.sbugat.nqueens.tools.InvalidSolutionsException;
 import com.google.common.collect.Lists;
 
@@ -22,9 +22,9 @@ public abstract class GenererateJavaScriptGraphData {
 
 		final List<GenericInstrumentedNQueensSolver> genericInstrumentedNQueensSolverList = new ArrayList<>();
 
-		// genericNQueensSolverList.add(new SlowBruteForceNQueensSolverWithListsNoQueensLimit(chessboardSize, true));
+		genericInstrumentedNQueensSolverList.add(new SlowBruteForceNQueensSolverWithLists(chessboardSize, false));
 		genericInstrumentedNQueensSolverList.add(new BruteForceNQueensSolverWithLists(chessboardSize, false));
-		genericInstrumentedNQueensSolverList.add(new BruteForceNQueensSolverArray(chessboardSize, false));
+		// genericInstrumentedNQueensSolverList.add(new BruteForceNQueensSolverArray(chessboardSize, false));
 
 		// genericNQueensSolverList.add(new BruteForceNQueensSolverFullyOptimized(chessboardSize));
 		// genericNQueensSolverList.add(new BruteForceNQueensSolverOneDimension(chessboardSize, false));
@@ -47,8 +47,8 @@ public abstract class GenererateJavaScriptGraphData {
 	public static void main(final String[] args) throws InvalidSolutionsException {
 
 		// Chessboard size
-		final int maxChessboardSize = 7;
-		final String javaScriptVariablePrefix = "prefix2";
+		final int maxChessboardSize = 8;
+		final String javaScriptVariablePrefix = "prefix";
 
 		final List<GenericInstrumentedNQueensSolver> genericInstrumentedNQueensSolverList = getSolvers(1);
 		final int solverNumber = genericInstrumentedNQueensSolverList.size();
@@ -58,7 +58,7 @@ public abstract class GenererateJavaScriptGraphData {
 		stringBuilder.append("<div class=\"panel panel-default tab-box\">" + System.lineSeparator());
 		stringBuilder.append("	<div class=\"panel-heading\">" + System.lineSeparator());
 		stringBuilder.append("		<h3 class=\"panel-title\">" + System.lineSeparator());
-		stringBuilder.append("			<i class=\"fa fa-signal\"></i>Algorithms comparison" + System.lineSeparator());
+		stringBuilder.append("			<i class=\"glyphicon glyphicon-stats\"></i>Algorithms comparison" + System.lineSeparator());
 		stringBuilder.append("		</h3>" + System.lineSeparator());
 		stringBuilder.append("		<ul class=\"nav nav-tabs\">" + System.lineSeparator());
 		for (int i = 0; i < VALUES_LIST.size(); i++) {
@@ -158,7 +158,16 @@ public abstract class GenererateJavaScriptGraphData {
 			if (entryId > 1) {
 				stringBuilder.append(", ");
 			}
-			stringBuilder.append(" \"" + entry.getKey() + "\": " + entry.getValue());
+
+			final Double key;
+			if (0.0 == entry.getKey().doubleValue()) {
+				key = Double.valueOf(0.1);
+			}
+			else {
+				key = entry.getKey();
+			}
+
+			stringBuilder.append(" \"" + key.toString().replaceFirst("\\.0$", "") + "\": " + entry.getValue());
 
 			entryId++;
 		}
@@ -204,9 +213,7 @@ public abstract class GenererateJavaScriptGraphData {
 			stringBuilder.append("]," + System.lineSeparator());
 			stringBuilder.append("	yLabelFormat: function(y) { if( " + javaScriptVariablePrefix + "logData[y] ) { return " + javaScriptVariablePrefix + "logData[y].toLocaleString(); } else { ");
 			stringBuilder.append("if( 0 == y ) { return 0; } ");
-			stringBuilder.append("var n=1;");
-			stringBuilder.append("for (var i = 0; i < y; i++) { n*=10; } ");
-			stringBuilder.append("return n.toLocaleString();");
+			stringBuilder.append("return \"10^\" + y;");
 			stringBuilder.append("} }," + System.lineSeparator());
 
 			stringBuilder.append("	xLabelFormat: function(obj) { return (obj.x + 1).toLocaleString(); }," + System.lineSeparator());

@@ -78,11 +78,11 @@ public abstract class GenericInstrumentedNQueensSolver extends GenericNQueensSol
 	public final String toJavaScriptData(final String dataPrefix) {
 
 		final StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append(" \"" + dataPrefix + "queenPlacements\": " + Math.log10(queenPlacementsCount) + ", ");
-		stringBuilder.append(" \"" + dataPrefix + "methodCalls\": " + Math.log10(methodCallsCount) + ", ");
-		stringBuilder.append(" \"" + dataPrefix + "squareReads\": " + Math.log10(squareReadsCount) + ", ");
-		stringBuilder.append(" \"" + dataPrefix + "explicitTests\": " + Math.log10(explicitTestsCount) + ", ");
-		stringBuilder.append(" \"" + dataPrefix + "implicitTests\": " + Math.log10(implicitTestsCount));
+		stringBuilder.append(" \"" + dataPrefix + "queenPlacements\": " + (0.0 == Math.log10(queenPlacementsCount) ? 0.1 : Math.log10(queenPlacementsCount)) + ", ");
+		stringBuilder.append(" \"" + dataPrefix + "methodCalls\": " + (0.0 == Math.log10(methodCallsCount) ? 0.1 : Math.log10(methodCallsCount)) + ", ");
+		stringBuilder.append(" \"" + dataPrefix + "squareReads\": " + (0.0 == Math.log10(squareReadsCount) ? 0.1 : Math.log10(squareReadsCount)) + ", ");
+		stringBuilder.append(" \"" + dataPrefix + "explicitTests\": " + (0.0 == Math.log10(explicitTestsCount) ? 0.1 : Math.log10(explicitTestsCount)) + ", ");
+		stringBuilder.append(" \"" + dataPrefix + "implicitTests\": " + (0.0 == Math.log10(implicitTestsCount) ? 0.1 : Math.log10(implicitTestsCount)));
 
 		return stringBuilder.toString();
 	}
