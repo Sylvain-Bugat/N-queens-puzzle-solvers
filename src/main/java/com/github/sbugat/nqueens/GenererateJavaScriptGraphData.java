@@ -5,8 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.github.sbugat.nqueens.solvers.bruteforce.instrumentations.BruteForceNQueensSolverWithLists;
-import com.github.sbugat.nqueens.solvers.bruteforce.instrumentations.SlowBruteForceNQueensSolverWithLists;
+import com.github.sbugat.nqueens.solvers.bruteforce.instrumentations.BruteForceNQueensSolverArray;
+import com.github.sbugat.nqueens.solvers.bruteforce.instrumentations.BruteForceNQueensSolverOneDimensionArray;
 import com.github.sbugat.nqueens.tools.InvalidSolutionsException;
 import com.google.common.collect.Lists;
 
@@ -22,9 +22,11 @@ public abstract class GenererateJavaScriptGraphData {
 
 		final List<GenericInstrumentedNQueensSolver> genericInstrumentedNQueensSolverList = new ArrayList<>();
 
-		genericInstrumentedNQueensSolverList.add(new SlowBruteForceNQueensSolverWithLists(chessboardSize, false));
-		genericInstrumentedNQueensSolverList.add(new BruteForceNQueensSolverWithLists(chessboardSize, false));
-		// genericInstrumentedNQueensSolverList.add(new BruteForceNQueensSolverArray(chessboardSize, false));
+		// genericInstrumentedNQueensSolverList.add(new SlowBruteForceNQueensSolverWithListsNoQueensLimit(chessboardSize, false));
+		// genericInstrumentedNQueensSolverList.add(new SlowBruteForceNQueensSolverWithLists(chessboardSize, false));
+		// genericInstrumentedNQueensSolverList.add(new BruteForceNQueensSolverWithLists(chessboardSize, false));
+		genericInstrumentedNQueensSolverList.add(new BruteForceNQueensSolverArray(chessboardSize, false));
+		genericInstrumentedNQueensSolverList.add(new BruteForceNQueensSolverOneDimensionArray(chessboardSize, false));
 
 		// genericNQueensSolverList.add(new BruteForceNQueensSolverFullyOptimized(chessboardSize));
 		// genericNQueensSolverList.add(new BruteForceNQueensSolverOneDimension(chessboardSize, false));
