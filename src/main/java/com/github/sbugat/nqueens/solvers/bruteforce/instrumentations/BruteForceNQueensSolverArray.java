@@ -130,7 +130,7 @@ public final class BruteForceNQueensSolverArray extends GenericInstrumentedNQuee
 
 				implicitTestsCount++;
 			}
-			implicitTestsCount++;
+
 			implicitTestsCount++;
 		}
 

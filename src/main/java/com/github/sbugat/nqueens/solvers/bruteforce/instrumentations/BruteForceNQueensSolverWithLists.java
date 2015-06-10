@@ -144,7 +144,7 @@ public final class BruteForceNQueensSolverWithLists extends GenericInstrumentedN
 
 				implicitTestsCount++;
 			}
-			implicitTestsCount++;
+
 			implicitTestsCount++;
 		}
 

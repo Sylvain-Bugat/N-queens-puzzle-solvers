@@ -108,7 +108,11 @@ public final class BruteForceNQueensSolverOneDimensionArray extends GenericInstr
 					}
 					usedLine = true;
 				}
+
+				implicitTestsCount++;
 			}
+
+			implicitTestsCount++;
 		}
 
 		// Check if 2 queens are on the same column
@@ -128,7 +132,11 @@ public final class BruteForceNQueensSolverOneDimensionArray extends GenericInstr
 					}
 					usedColumn = true;
 				}
+
+				implicitTestsCount++;
 			}
+
+			implicitTestsCount++;
 		}
 
 		// Check if 2 queens are on the same descending diagonal
@@ -157,7 +165,11 @@ public final class BruteForceNQueensSolverOneDimensionArray extends GenericInstr
 						usedDiagonal = true;
 					}
 				}
+
+				implicitTestsCount++;
 			}
+
+			implicitTestsCount++;
 		}
 
 		// Check if 2 queens are on the same ascending diagonal
@@ -185,7 +197,11 @@ public final class BruteForceNQueensSolverOneDimensionArray extends GenericInstr
 						usedDiagonal = true;
 					}
 				}
+
+				implicitTestsCount++;
 			}
+
+			implicitTestsCount++;
 		}
 
 		return true;

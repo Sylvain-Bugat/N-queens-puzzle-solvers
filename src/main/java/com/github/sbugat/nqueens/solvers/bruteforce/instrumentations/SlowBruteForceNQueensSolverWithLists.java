@@ -171,7 +171,7 @@ public final class SlowBruteForceNQueensSolverWithLists extends GenericInstrumen
 
 				implicitTestsCount++;
 			}
-			implicitTestsCount++;
+
 			implicitTestsCount++;
 		}
 
