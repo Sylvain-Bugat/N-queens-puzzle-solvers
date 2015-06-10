@@ -68,7 +68,7 @@
 
 		<!-- Tests -->
 		<junit.version>4.12</junit.version>
-		<assertj.version>2.0.0</assertj.version>
+		<assertj.version>2.1.0</assertj.version>
 
 		<!-- Maven Lifecycle Plugins Version -->
 		<maven.pluginclean.version>2.6.1</maven.pluginclean.version>
