@@ -2,7 +2,7 @@
 
 [![License](https://img.shields.io/github/license/Sylvain-Bugat/N-queens-puzzle-solvers.svg)](https://github.com/Sylvain-Bugat/N-queens-puzzle-solvers/blob/master/LICENSE)
 [![Build Status](https://img.shields.io/travis/Sylvain-Bugat/N-queens-puzzle-solvers.svg)](https://travis-ci.org/Sylvain-Bugat/N-queens-puzzle-solvers)
-[![Coverage Status](https://coveralls.io/repos/Sylvain-Bugat/N-queens-puzzle-solvers/badge.svg?branch=master)](https://coveralls.io/r/Sylvain-Bugat/N-queens-puzzle-solvers?branch=master)
+[![Coverage Status](https://img.shields.io/coveralls/Sylvain-Bugat/N-queens-puzzle-solvers.svg)](https://coveralls.io/r/Sylvain-Bugat/N-queens-puzzle-solvers?branch=master)
 
 ========================
 
