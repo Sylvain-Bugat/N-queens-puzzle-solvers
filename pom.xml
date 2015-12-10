@@ -69,7 +69,7 @@
 		<apache.commons.lang>3.4</apache.commons.lang>
 		
 		<!-- Google Guava -->
-		<guava.version>18.0</guava.version>
+		<guava.version>19.0</guava.version>
 
 		<!-- Tests -->
 		<junit.version>4.12</junit.version>
